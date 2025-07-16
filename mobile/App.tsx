@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const App = () => {
-  const targetUrl = 'http://192.168.215.193:5173/';
+  const targetUrl = 'https://akounatest-livrable-frontend.onrender.com';
 
   return (
     <SafeAreaView style={styles.container}>
