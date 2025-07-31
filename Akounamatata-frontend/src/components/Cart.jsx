@@ -21,8 +21,8 @@ const Cart = () => {
         const clientId = useAuthStore.getState().user?.id || import.meta.env.VITE_USER;
         try {
             const response = await panierService.removeItem(clientId, platId, table._id);
-            setPanier(response?.data?.panier);
             toast.success('plat retire du panier');
+            setPanier(response?.data?.panier);
         } catch(error) {
             console.error('erreur lors de la suppression au panier: ', error);
             toast.error(error.message);
@@ -42,8 +42,8 @@ const Cart = () => {
             }
             try {
                 const response = await panierService.updateItem(clientId, itemData);
-                setPanier(response?.data?.panier);
                 toast.success('panier mis a jour');
+                setPanier(response?.data?.panier);
             } catch(error) {
                 console.error('erreur lors de la mise a jour du panier: ', error);
                 toast.error(error.message);
@@ -55,8 +55,8 @@ const Cart = () => {
         const clientId = useAuthStore.getState().user?.id || import.meta.env.VITE_USER;
         try {
             const response = await panierService.clearPanier(clientId, table._id);
-            setPanier(response?.data?.panier);
             toast.success('Panier vider');
+            setPanier(response?.data?.panier);
         } catch(error) {
             console.error('erreur lors de la suppression des plats du panier: ', error);
             toast.error(error.message);
@@ -69,9 +69,9 @@ const Cart = () => {
             const response = await panierService.convertToOrder(clientId, {
                 tableId: table._id,
             });
+            toast.success('Commande passer. Veillez patienter...');
             closeCart();
             clearPanier();
-            toast.success('Commande passer. Veillez patienter...');
         } catch(error) {
             console.error('erreur lors de la suppression au panier: ', error);
             toast.error(error.message);
