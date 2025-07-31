@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Couleurs Akounamatata enrichies avec nuances oklch */
+  --akounamatata-slate: #2C3E50;            /* Bleu Ardoise */
+  --akounamatata-emerald: #27AE60;          /* Vert Émeraude */
+  --akounamatata-gold: #F1C40F;             /* Or Royal */
+  --akounamatata-champagne: #F7DC6F;        /* Champagne */
+  --akounamatata-warm-white: #FDF6E3;       /* Blanc Chaud */
+  --akounamatata-charcoal: #34495E;         /* Charbon */
+
+  /* Couleurs principales */
+  --background: var(--akounamatata-warm-white);
+  --foreground: var(--akounamatata-charcoal);
+
+  /* Card & Popover combinés */
+  --card: oklch(1 0 0); /* Blanc pur, neutre */
+  --card-foreground: var(--akounamatata-charcoal);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--akounamatata-charcoal);
+
+  /* Palette principale (fusion oklch + Akounamatata) */
+  --primary: var(--akounamatata-slate);           /* Bleu Ardoise */
+  --primary-foreground: var(--akounamatata-warm-white);
+
+  --secondary: var(--akounamatata-champagne);
+  --secondary-foreground: var(--akounamatata-charcoal);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: var(--akounamatata-emerald);
+  --accent-foreground: var(--akounamatata-warm-white);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  
+  --ring: var(--akounamatata-gold);
+
+  /* Couleurs graphiques (charts) */
+  --chart-1: var(--akounamatata-emerald);
+  --chart-2: var(--akounamatata-gold);
+  --chart-3: var(--akounamatata-slate);
+  --chart-4: var(--akounamatata-champagne);
+  --chart-5: var(--akounamatata-charcoal);
+
+  /* Sidebar */
+  --sidebar: var(--akounamatata-warm-white);
+  --sidebar-foreground: var(--akounamatata-charcoal);
+  --sidebar-primary: var(--akounamatata-slate);
+  --sidebar-primary-foreground: var(--akounamatata-warm-white);
+  --sidebar-accent: var(--akounamatata-champagne);
+  --sidebar-accent-foreground: var(--akounamatata-charcoal);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: var(--akounamatata-gold);
+}
+
+.dark {
+  /* Fond et texte inversés, inspirés de la palette Akounamatata avec nuances oklch */
+  --background: var(--akounamatata-charcoal);
+  --foreground: var(--akounamatata-warm-white);
+
+  --card: var(--akounamatata-slate);
+  --card-foreground: var(--akounamatata-warm-white);
+
+  --popover: var(--akounamatata-slate);
+  --popover-foreground: var(--akounamatata-warm-white);
+
+  --primary: var(--akounamatata-emerald);
+  --primary-foreground: var(--akounamatata-charcoal);
+
+  --secondary: var(--akounamatata-slate);
+  --secondary-foreground: var(--akounamatata-warm-white);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: var(--akounamatata-gold);
+  --accent-foreground: var(--akounamatata-charcoal);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--akounamatata-gold);
+
+  --chart-1: var(--akounamatata-emerald);
+  --chart-2: var(--akounamatata-gold);
+  --chart-3: var(--akounamatata-champagne);
+  --chart-4: var(--akounamatata-warm-white);
+  --chart-5: var(--akounamatata-slate);
+
+  --sidebar: var(--akounamatata-slate);
+  --sidebar-foreground: var(--akounamatata-warm-white);
+  --sidebar-primary: var(--akounamatata-emerald);
+  --sidebar-primary-foreground: var(--akounamatata-charcoal);
+  --sidebar-accent: var(--akounamatata-charcoal);
+  --sidebar-accent-foreground: var(--akounamatata-warm-white);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: var(--akounamatata-gold);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Styles personnalisés Akounamatata (fusionnés) */
+@layer components {
+  .akounamatata-gradient {
+    background: linear-gradient(135deg, var(--akounamatata-emerald) 0%, var(--akounamatata-gold) 100%);
+  }
+
+  .akounamatata-card {
+    @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .akounamatata-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
+  }
+
+  .akounamatata-button-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 transition-colors duration-200;
+  }
+
+  .akounamatata-text-gradient {
+    background: linear-gradient(135deg, var(--akounamatata-emerald), var(--akounamatata-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Animations personnalisées */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounceGentle 2s infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
