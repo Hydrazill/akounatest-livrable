@@ -3,6 +3,9 @@ const compression = require('compression');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
+const fs = require('fs');
+const path = require('path');
 
 const corsMiddleware = require('./middlewares/cors');
 const config = require('./config');
@@ -44,6 +47,11 @@ app.use('/api/menus', require('./modules/menuDuJour/menuDuJour.route.js'));
 app.use('/api/paniers', require('./modules/panier/panier.route.js'));
 app.use('/api/plats', require('./modules/plat/plat.route.js'));
 app.use('/api/table', require('./modules/table/table.route.js'));
+
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.join(__dirname, 'docs', 'swagger.json'), 'utf8')
+);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route racine
 app.get('/', (req, res) => {

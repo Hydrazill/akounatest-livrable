@@ -1,0 +1,1054 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Akounamatata",
+    "version": "1.0.0",
+    "description": "API RESTful pour le système de restaurant digital Akounamatata",
+    "contact": {
+      "name": "Équipe Akounamatata",
+      "email": "contact@akounamatata.ci"
+    },
+    "license": {
+      "name": "ISC",
+      "url": "https://opensource.org/licenses/ISC"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Serveur de développement"
+    },
+    {
+      "url": "https://api.akounamatata.ci",
+      "description": "Serveur de production"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": ["Authentification"],
+        "summary": "Enregistrement d'un nouvel utilisateur",
+        "description": "Crée un nouveau compte utilisateur",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["nom", "email", "telephone", "motDePasse"],
+                "properties": {
+                  "nom": {
+                    "type": "string",
+                    "minLength": 2,
+                    "description": "Nom de l'utilisateur"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Adresse email"
+                  },
+                  "telephone": {
+                    "type": "string",
+                    "description": "Numéro de téléphone"
+                  },
+                  "motDePasse": {
+                    "type": "string",
+                    "minLength": 6,
+                    "description": "Mot de passe"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": ["client", "admin"],
+                    "default": "client",
+                    "description": "Rôle de l'utilisateur"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Utilisateur créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Données invalides ou utilisateur existant",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Authentification"],
+        "summary": "Connexion d'un utilisateur",
+        "description": "Authentifie un utilisateur et retourne un token JWT",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "motDePasse"],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Adresse email"
+                  },
+                  "motDePasse": {
+                    "type": "string",
+                    "description": "Mot de passe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Connexion réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Données invalides",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email ou mot de passe incorrect",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": ["Authentification"],
+        "summary": "Récupération du profil utilisateur",
+        "description": "Récupère les informations du profil de l'utilisateur connecté",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Informations utilisateur récupérées",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Informations utilisateur récupérées"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorisé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": ["Authentification"],
+        "summary": "Déconnexion de l'utilisateur",
+        "description": "Déconnecte l'utilisateur (invalide le token côté client)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Déconnexion réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorisé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "tags": ["Catégories"],
+        "summary": "Récupérer la liste des catégories",
+        "description": "Récupère toutes les catégories de plats",
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "query",
+            "description": "ID du restaurant",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "akounamatata_main"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des catégories récupérée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Categorie"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Liste des catégories récupérée"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Catégories"],
+        "summary": "Créer une nouvelle catégorie",
+        "description": "Crée une nouvelle catégorie de plats",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["nom"],
+                "properties": {
+                  "nom": {
+                    "type": "string",
+                    "description": "Nom de la catégorie"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description de la catégorie"
+                  },
+                  "ordre": {
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 0,
+                    "description": "Ordre d'affichage"
+                  },
+                  "iconUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL de l'icône"
+                  },
+                  "restaurantId": {
+                    "type": "string",
+                    "default": "akounamatata_main",
+                    "description": "ID du restaurant"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Catégorie créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "categorie": {
+                          "$ref": "#/components/schemas/Categorie"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Catégorie créée avec succès"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Données invalides ou catégorie existante",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorisé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Accès refusé (admin requis)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plats": {
+      "get": {
+        "tags": ["Plats"],
+        "summary": "Récupérer la liste des plats",
+        "description": "Récupère une liste paginée de plats",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Numéro de page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Nombre d'éléments par page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "categorieId",
+            "in": "query",
+            "description": "Filtrer par catégorie",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disponible",
+            "in": "query",
+            "description": "Filtrer par disponibilité",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Recherche par nom, description ou ingrédients",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "restaurantId",
+            "in": "query",
+            "description": "ID du restaurant",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "akounamatata_main"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plats récupérés",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "plats": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Plat"
+                          }
+                        },
+                        "totalPages": {
+                          "type": "number"
+                        },
+                        "currentPage": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Plats récupérés"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/table/{id}/occupy": {
+      "post": {
+        "tags": ["Tables"],
+        "summary": "Occuper une table",
+        "description": "Marque une table comme occupée",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la table",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Table occupée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "table": {
+                          "$ref": "#/components/schemas/Table"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Table occupée"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Table déjà occupée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Table non trouvée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/table/{id}/free": {
+      "post": {
+        "tags": ["Tables"],
+        "summary": "Libérer une table",
+        "description": "Marque une table comme libre",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de la table",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Table libérée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "table": {
+                          "$ref": "#/components/schemas/Table"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Table libérée"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Table déjà libre",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Table non trouvée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": ["Santé"],
+        "summary": "Vérification de la santé de l'API",
+        "description": "Vérifie si l'API est en ligne et fonctionnelle",
+        "responses": {
+          "200": {
+            "description": "Service en ligne",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "OK"
+                        },
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "uptime": {
+                          "type": "number"
+                        },
+                        "environment": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "services": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Service en ligne"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID unique de l'utilisateur"
+          },
+          "nom": {
+            "type": "string",
+            "description": "Nom de l'utilisateur"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Adresse email de l'utilisateur"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "Numéro de téléphone de l'utilisateur"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["client", "admin", "gestionnaire"],
+            "description": "Rôle de l'utilisateur"
+          },
+          "dateCreation": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date de création du compte"
+          },
+          "dernierAcces": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date du dernier accès"
+          }
+        }
+      },
+      "Categorie": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID unique de la catégorie"
+          },
+          "nom": {
+            "type": "string",
+            "description": "Nom de la catégorie"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description de la catégorie"
+          },
+          "ordre": {
+            "type": "number",
+            "description": "Ordre d'affichage de la catégorie"
+          },
+          "iconUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL de l'icône de la catégorie"
+          },
+          "restaurantId": {
+            "type": "string",
+            "description": "ID du restaurant"
+          }
+        }
+      },
+      "Plat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID unique du plat"
+          },
+          "nom": {
+            "type": "string",
+            "description": "Nom du plat"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description du plat"
+          },
+          "prix": {
+            "type": "number",
+            "description": "Prix du plat"
+          },
+          "devise": {
+            "type": "string",
+            "default": "FCFA",
+            "description": "Devise du prix"
+          },
+          "categorieId": {
+            "type": "string",
+            "description": "ID de la catégorie du plat"
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL de l'image du plat"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Liste des ingrédients"
+          },
+          "allergenes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Liste des allergènes"
+          },
+          "tempsPreparation": {
+            "type": "number",
+            "description": "Temps de préparation en minutes"
+          },
+          "disponible": {
+            "type": "boolean",
+            "description": "Disponibilité du plat"
+          },
+          "restaurantId": {
+            "type": "string",
+            "description": "ID du restaurant"
+          }
+        }
+      },
+      "Table": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID unique de la table"
+          },
+          "numero": {
+            "type": "string",
+            "description": "Numéro de la table"
+          },
+          "capacite": {
+            "type": "number",
+            "description": "Capacité de la table"
+          },
+          "statutOccupee": {
+            "type": "boolean",
+            "description": "Statut d'occupation de la table"
+          },
+          "clientActuel": {
+            "type": "string",
+            "description": "ID du client actuel (si occupée)"
+          },
+          "qrCode": {
+            "type": "string",
+            "description": "Code QR de la table"
+          },
+          "restaurantId": {
+            "type": "string",
+            "description": "ID du restaurant"
+          }
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string",
+                "description": "Token JWT"
+              },
+              "user": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "nom": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si la requête a réussi"
+          },
+          "data": {
+            "type": "object",
+            "description": "Données de la réponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message descriptif"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "Message d'erreur"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
+
