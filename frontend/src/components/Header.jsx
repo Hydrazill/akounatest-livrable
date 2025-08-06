@@ -6,7 +6,8 @@ import {
   X, 
   ShoppingCart, 
   User, 
-  Heart, 
+  Heart,
+  QrCode,
   History,
   LogOut,
   LogIn
@@ -84,6 +85,13 @@ const Header = () => {
 
           {/* Actions desktop */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Scan le code de la table */}
+            <Link to="/qr" className="text-foreground hover:text-primary transition-colors">
+              <Button variant="ghost" size="sm">
+                <span className="sr-only">Scanner QR Code</span>
+                <QrCode className="h-5 w-5" />
+              </Button>
+            </Link>
             {/* Panier */}
             <Button
               variant="ghost"
@@ -154,6 +162,13 @@ const Header = () => {
 
           {/* Menu mobile toggle */}
           <div className="md:hidden flex items-center space-x-2">
+            {/* Scan le code de la table */}
+            <Link to="/qr" className="text-foreground hover:text-primary transition-colors">
+              <Button variant="ghost" size="sm">
+                <span className="sr-only">Scanner QR Code</span>
+                <QrCode className="h-5 w-5" />
+              </Button>
+            </Link>
             {/* Panier mobile */}
             <Button
               variant="ghost"
