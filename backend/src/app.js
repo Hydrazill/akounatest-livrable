@@ -7,6 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const path = require('path');
 
+const Logger = require('./utils/logger.js');
 const corsMiddleware = require('./middlewares/cors');
 const config = require('./config');
 const { generalLimiter } = require('./middlewares/security');
