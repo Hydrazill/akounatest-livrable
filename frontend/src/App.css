@@ -76,7 +76,7 @@
   --secondary-foreground: #fff;
 
   --muted: #FA631220;
-  --muted-foreground: #992B3266;
+  --muted-foreground: #fff; /* #992B3266; */
 
   --accent: var(--main-3);
   --accent-foreground: #fff;
