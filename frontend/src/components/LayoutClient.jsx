@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 
 import Header from './Header';
+import Footer from './Footer';
 import Cart from './Cart';
 import { useAuthStore, useUIStore, usePanierStore, useTableStore, useFavorisStore } from '@/lib/store';
 import { panierService, userService } from '../lib/api';
@@ -90,7 +91,7 @@ const LayoutClient = () => {
       </motion.main>
 
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
 
       {/* Panier coulissant */}
       {isCartOpen && <Cart />}

@@ -225,7 +225,7 @@ const AdminPlatsPage = () => {
         className="flex flex-col md:flex-row md:items-center justify-between"
       >
         <div>
-          <h1 className="text-3xl font-bold akounamatata-text-gradient">
+          <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Plats
           </h1>
           <p className="text-muted-foreground">
@@ -248,7 +248,7 @@ const AdminPlatsPage = () => {
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="akounamatata-button-primary" onClick={() => setIsDialogOpen(true)}>
+            <Button className="foodHive-button-primary" onClick={() => setIsDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
               Nouveau plat
             </Button>
@@ -443,7 +443,7 @@ const AdminPlatsPage = () => {
             {/* Grille des plats */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPlats.map((plat) => (
-                <Card key={plat._id} className="akounamatata-card group">
+                <Card key={plat._id} className="foodHive-card group">
                   {/* Image */}
                   <div className="relative overflow-hidden rounded-t-lg">
                     <img
@@ -547,7 +547,7 @@ const AdminPlatsPage = () => {
               ))}
 
               {/* Carte d'ajout */}
-              <Card className="akounamatata-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
+              <Card className="foodHive-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
                 <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[200px]">
                   <Plus className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="font-semibold text-muted-foreground">Ajouter une table</h3>
@@ -569,7 +569,7 @@ const AdminPlatsPage = () => {
                     : 'Commencez par ajouter des plats à votre menu'
                   }
                 </p>
-                <Button className="akounamatata-button-primary">
+                <Button className="foodHive-button-primary">
                   <Plus className="h-4 w-4 mr-2" />
                   Ajouter un plat
                 </Button>

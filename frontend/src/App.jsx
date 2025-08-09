@@ -118,14 +118,14 @@ function App() {
                 },
                 success: {
                   iconTheme: {
-                    primary: 'var(--akounamatata-emerald)',
-                    secondary: 'var(--akounamatata-warm-white)',
+                    primary: 'var(--foodHive-emerald)',
+                    secondary: 'var(--foodHive-warm-white)',
                   },
                 },
                 error: {
                   iconTheme: {
                     primary: 'var(--destructive)',
-                    secondary: 'var(--akounamatata-warm-white)',
+                    secondary: 'var(--foodHive-warm-white)',
                   },
                 },
               }}

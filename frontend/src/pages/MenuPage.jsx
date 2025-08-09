@@ -165,7 +165,7 @@ const MenuPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-8"
                 >
-                    <h1 className="text-4xl font-bold mb-4 akounamatata-text-gradient">
+                    <h1 className="text-4xl font-bold mb-4 foodHive-text-gradient">
                         Notre Menu
                     </h1>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -231,7 +231,7 @@ const MenuPage = () => {
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{ delay: index * 0.1 }}
                                         >
-                                            <Card className="akounamatata-card group hover:shadow-lg transition-all duration-300">
+                                            <Card className="foodHive-card group hover:shadow-lg transition-all duration-300">
                                                 {/* Image */}
                                                 <div className="relative overflow-hidden rounded-t-lg">
                                                     <img
@@ -301,7 +301,7 @@ const MenuPage = () => {
                                                     {/* Actions */}
                                                     <div className="flex space-x-2">
                                                         <Button
-                                                            className="flex-1 akounamatata-button-primary"
+                                                            className="flex-1 foodHive-button-primary"
                                                             onClick={() => handleAddToCart(plat)}
                                                         >
                                                             <Plus className="mr-2 h-4 w-4" />

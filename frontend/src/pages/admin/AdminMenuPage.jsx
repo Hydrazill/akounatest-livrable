@@ -204,7 +204,7 @@ const AdminMenuPage = () => {
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button onClick={resetForm} className="akounamatata-button-primary">
+            <Button onClick={resetForm} className="foodHive-button-primary">
               <Plus className="h-4 w-4 mr-2" />
               Nouveau menu
             </Button>

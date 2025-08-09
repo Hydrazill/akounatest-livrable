@@ -44,105 +44,109 @@
 :root {
   --radius: 0.625rem;
 
-  /* Couleurs Akounamatata enrichies avec nuances oklch */
-  --akounamatata-slate: #2C3E50;            /* Bleu Ardoise */
-  --akounamatata-emerald: #27AE60;          /* Vert Émeraude */
-  --akounamatata-gold: #F1C40F;             /* Or Royal */
-  --akounamatata-champagne: #F7DC6F;        /* Champagne */
-  --akounamatata-warm-white: #FDF6E3;       /* Blanc Chaud */
-  --akounamatata-charcoal: #34495E;         /* Charbon */
+  /* Palette personnalisée */
+  --main-1: #FA6312;
+  --main-2: #992B32;
+  --main-3: #5F0A5E;
+
+  /* Remplace les anciennes couleurs FoodHive */
+  --foodHive-slate: var(--main-3);
+  --foodHive-emerald: var(--main-1);
+  --foodHive-gold: var(--main-2);
+  --foodHive-champagne: #F7DC6F;
+  --foodHive-warm-white: #FFF6F2;
+  --foodHive-warm-black: black;
+  --foodHive-charcoal: #2D2328;
 
   /* Couleurs principales */
-  --background: var(--akounamatata-warm-white);
-  --foreground: var(--akounamatata-charcoal);
+  --background: var(--foodHive-warm-black);
+  --foreground: /* var(--foodHive-warm-black); */ var(--foodHive-charcoal);
 
   /* Card & Popover combinés */
-  --card: oklch(1 0 0); /* Blanc pur, neutre */
-  --card-foreground: var(--akounamatata-charcoal);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--akounamatata-charcoal);
+  --card: #FFF6F2;
+  --card-foreground: var(--foodHive-charcoal);
+  --popover: #FFF6F2;
+  --popover-foreground: var(--foodHive-charcoal);
 
-  /* Palette principale (fusion oklch + Akounamatata) */
-  --primary: var(--akounamatata-slate);           /* Bleu Ardoise */
-  --primary-foreground: var(--akounamatata-warm-white);
+  /* Palette principale */
+  --primary: var(--main-1);
+  --primary-foreground: #fff;
 
-  --secondary: var(--akounamatata-champagne);
-  --secondary-foreground: var(--akounamatata-charcoal);
+  --secondary: var(--main-2);
+  --secondary-foreground: #fff;
 
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted: #FA631220;
+  --muted-foreground: #992B3266;
 
-  --accent: var(--akounamatata-emerald);
-  --accent-foreground: var(--akounamatata-warm-white);
+  --accent: var(--main-3);
+  --accent-foreground: #fff;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #992B32;
 
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  
-  --ring: var(--akounamatata-gold);
+  --border: #FA631255;
+  --input: #FA631244;
+  --ring: #5F0A5E;
 
   /* Couleurs graphiques (charts) */
-  --chart-1: var(--akounamatata-emerald);
-  --chart-2: var(--akounamatata-gold);
-  --chart-3: var(--akounamatata-slate);
-  --chart-4: var(--akounamatata-champagne);
-  --chart-5: var(--akounamatata-charcoal);
+  --chart-1: var(--main-1);
+  --chart-2: var(--main-2);
+  --chart-3: var(--main-3);
+  --chart-4: #FFF6F2;
+  --chart-5: #2D2328;
 
   /* Sidebar */
-  --sidebar: var(--akounamatata-warm-white);
-  --sidebar-foreground: var(--akounamatata-charcoal);
-  --sidebar-primary: var(--akounamatata-slate);
-  --sidebar-primary-foreground: var(--akounamatata-warm-white);
-  --sidebar-accent: var(--akounamatata-champagne);
-  --sidebar-accent-foreground: var(--akounamatata-charcoal);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: var(--akounamatata-gold);
+  --sidebar: #FFF6F2;
+  --sidebar-foreground: #2D2328;
+  --sidebar-primary: var(--main-1);
+  --sidebar-primary-foreground: #fff;
+  --sidebar-accent: var(--main-3);
+  --sidebar-accent-foreground: #fff;
+  --sidebar-border: #FA631255;
+  --sidebar-ring: #5F0A5E;
 }
 
 .dark {
-  /* Fond et texte inversés, inspirés de la palette Akounamatata avec nuances oklch */
-  --background: var(--akounamatata-charcoal);
-  --foreground: var(--akounamatata-warm-white);
+  --background: #2D2328;
+  --foreground: #FFF6F2;
 
-  --card: var(--akounamatata-slate);
-  --card-foreground: var(--akounamatata-warm-white);
+  --card: #5F0A5E;
+  --card-foreground: #FFF6F2;
 
-  --popover: var(--akounamatata-slate);
-  --popover-foreground: var(--akounamatata-warm-white);
+  --popover: #5F0A5E;
+  --popover-foreground: #FFF6F2;
 
-  --primary: var(--akounamatata-emerald);
-  --primary-foreground: var(--akounamatata-charcoal);
+  --primary: var(--main-1);
+  --primary-foreground: #fff;
 
-  --secondary: var(--akounamatata-slate);
-  --secondary-foreground: var(--akounamatata-warm-white);
+  --secondary: var(--main-2);
+  --secondary-foreground: #fff;
 
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted: #5F0A5E55;
+  --muted-foreground: #FA6312B3;
 
-  --accent: var(--akounamatata-gold);
-  --accent-foreground: var(--akounamatata-charcoal);
+  --accent: var(--main-3);
+  --accent-foreground: #fff;
 
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: #992B32;
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--akounamatata-gold);
+  --border: #FFF6F244;
+  --input: #FFF6F233;
+  --ring: #5F0A5E;
 
-  --chart-1: var(--akounamatata-emerald);
-  --chart-2: var(--akounamatata-gold);
-  --chart-3: var(--akounamatata-champagne);
-  --chart-4: var(--akounamatata-warm-white);
-  --chart-5: var(--akounamatata-slate);
+  --chart-1: var(--main-1);
+  --chart-2: var(--main-2);
+  --chart-3: var(--main-3);
+  --chart-4: #FFF6F2;
+  --chart-5: #992B32;
 
-  --sidebar: var(--akounamatata-slate);
-  --sidebar-foreground: var(--akounamatata-warm-white);
-  --sidebar-primary: var(--akounamatata-emerald);
-  --sidebar-primary-foreground: var(--akounamatata-charcoal);
-  --sidebar-accent: var(--akounamatata-charcoal);
-  --sidebar-accent-foreground: var(--akounamatata-warm-white);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: var(--akounamatata-gold);
+  --sidebar: #5F0A5E;
+  --sidebar-foreground: #FFF6F2;
+  --sidebar-primary: var(--main-1);
+  --sidebar-primary-foreground: #fff;
+  --sidebar-accent: var(--main-2);
+  --sidebar-accent-foreground: #fff;
+  --sidebar-border: #FFF6F244;
+  --sidebar-ring: #5F0A5E;
 }
 
 @layer base {
@@ -154,26 +158,26 @@
   }
 }
 
-/* Styles personnalisés Akounamatata (fusionnés) */
+/* Styles personnalisés FoodHive (fusionnés) */
 @layer components {
-  .akounamatata-gradient {
-    background: linear-gradient(135deg, var(--akounamatata-emerald) 0%, var(--akounamatata-gold) 100%);
+  .foodHive-gradient {
+    background: linear-gradient(135deg, #FA6312 0%, #992B32 50%, #5F0A5E 100%);
   }
 
-  .akounamatata-card {
+  .foodHive-card {
     @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
-  .akounamatata-button-primary {
+  .foodHive-button-primary {
     @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200;
   }
 
-  .akounamatata-button-accent {
+  .foodHive-button-accent {
     @apply bg-accent text-accent-foreground hover:bg-accent/90 transition-colors duration-200;
   }
 
-  .akounamatata-text-gradient {
-    background: linear-gradient(135deg, var(--akounamatata-emerald), var(--akounamatata-gold));
+  .foodHive-text-gradient {
+    background: linear-gradient(90deg, #FA6312 0%, #992B32 50%, #5F0A5E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

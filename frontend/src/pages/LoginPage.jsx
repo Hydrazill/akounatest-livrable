@@ -105,18 +105,18 @@ const LoginPage = () => {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardHeader className="text-center">
             <motion.div
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <CardTitle className="text-2xl font-bold akounamatata-text-gradient">
+              <CardTitle className="text-2xl font-bold foodHive-text-gradient">
                 Connexion
               </CardTitle>
               <CardDescription>
-                Connectez-vous à votre compte Akounamatata
+                Connectez-vous à votre compte FoodHive
               </CardDescription>
             </motion.div>
           </CardHeader>
@@ -175,7 +175,7 @@ const LoginPage = () => {
               {/* Bouton de connexion */}
               <Button
                 type="submit"
-                className="w-full akounamatata-button-primary"
+                className="w-full foodHive-button-primary"
                 disabled={isLoading}
               >
                 {isLoading ? (

@@ -84,7 +84,7 @@ const LayoutAdmin = () => {
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link to="/" className="flex items-center gap-2 font-semibold">
               <UtensilsCrossed className="h-6 w-6" />
-              <span className="">AKOUNAMATATA</span>
+              <span className="">FOODHIVE</span>
             </Link>
           </div>
           <div className="flex-1">
@@ -120,7 +120,7 @@ const LayoutAdmin = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <UtensilsCrossed className="h-6 w-6" />
-                  <span>AKOUNAMATATA</span>
+                  <span>FOODHIVE</span>
                 </Link>
                 {adminNavItems.map((item) => (
                   <NavLink key={item.href} {...item} mobile />

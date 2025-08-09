@@ -24,6 +24,7 @@ import {
 } from './ui/dropdown-menu';
 
 import { useAuthStore, useUIStore, usePanierStore } from '@/lib/store';
+import logo from '@/assets/logo_1.png'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,17 +44,25 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="container mx-auto px-4">
+    // <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+    <header className="sticky top-0 z-50 bg-foreground/50 backdrop-blur supports-[backdrop-filter]:bg-foreground/60">
+      <div className="container mx-auto text-primary-foreground px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <motion.div
-              className="text-2xl font-bold akounamatata-text-gradient"
+              className="flex items-center text-2xl font-bold foodHive-text-gradient"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Akounamatata
+              {/* <span className="h-16 w-16 mr-2 rounded-full bg-gradient-to-br from-purple-400 to-orange-300 flex items-center justify-center"> */}
+                <img
+                  src={logo}
+                  alt="FoodHive Logo"
+                  className="h-24 w-24"
+                />
+              {/* </span> */}
+              {/* FoodHive */}
             </motion.div>
           </Link>
 
@@ -61,7 +70,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <Link 
               to="/menu" 
-              className="text-foreground hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors"
             >
               Menu
             </Link>
@@ -69,13 +78,13 @@ const Header = () => {
               <>
                 <Link 
                   to="/favorites" 
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   Favoris
                 </Link>
                 {/* <Link 
                   to="/orders" 
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   Historique
                 </Link> */}
@@ -86,8 +95,8 @@ const Header = () => {
           {/* Actions desktop */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Scan le code de la table */}
-            <Link to="/qr" className="text-foreground hover:text-primary transition-colors">
-              <Button variant="ghost" size="sm">
+            <Link to="/qr" className="hover:text-primary transition-colors">
+              <Button variant="ghost" size="sm" className="relative">
                 <span className="sr-only">Scanner QR Code</span>
                 <QrCode className="h-5 w-5" />
               </Button>
@@ -163,7 +172,7 @@ const Header = () => {
           {/* Menu mobile toggle */}
           <div className="md:hidden flex items-center space-x-2">
             {/* Scan le code de la table */}
-            <Link to="/qr" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/qr" className="hover:text-primary transition-colors">
               <Button variant="ghost" size="sm">
                 <span className="sr-only">Scanner QR Code</span>
                 <QrCode className="h-5 w-5" />
@@ -211,7 +220,7 @@ const Header = () => {
               <nav className="py-4 space-y-2">
                 <Link 
                   to="/menu" 
-                  className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                  className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Menu
@@ -221,21 +230,21 @@ const Header = () => {
                   <>
                     <Link 
                       to="/profile" 
-                      className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Mon Profil
                     </Link>
                     <Link 
                       to="/favorites" 
-                      className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Mes Favoris
                     </Link>
                     {/* <Link 
                       to="/orders" 
-                      className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Historique
@@ -245,7 +254,7 @@ const Header = () => {
                         handleLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block w-full text-left px-4 py-2 hover:bg-accent rounded-md transition-colors"
                     >
                       Déconnexion
                     </button>
@@ -254,14 +263,14 @@ const Header = () => {
                   <>
                     <Link 
                       to="/login" 
-                      className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Connexion
                     </Link>
                     <Link 
                       to="/register" 
-                      className="block px-4 py-2 text-foreground hover:bg-accent rounded-md transition-colors"
+                      className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       S'inscrire

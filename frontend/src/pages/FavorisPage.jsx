@@ -102,7 +102,7 @@ const FavorisPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-8"
             >
-                <h1 className="text-4xl font-bold mb-4 akounamatata-text-gradient flex items-center justify-center">
+                <h1 className="text-4xl font-bold mb-4 foodHive-text-gradient flex items-center justify-center">
                     <Heart className="mr-3 h-8 w-8 text-red-500" />
                     Mes Favoris
                 </h1>
@@ -123,7 +123,7 @@ const FavorisPage = () => {
                     <p className="text-muted-foreground mb-8 max-w-md mx-auto">
                         Explorez notre menu et ajoutez vos plats préférés à vos favoris en cliquant sur le cœur
                     </p>
-                    <Button asChild className="akounamatata-button-primary">
+                    <Button asChild className="foodHive-button-primary">
                         <a href="/menu">Découvrir le menu</a>
                     </Button>
                 </motion.div>
@@ -142,7 +142,7 @@ const FavorisPage = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                         >
-                            <Card className="akounamatata-card group hover:shadow-lg transition-all duration-300">
+                            <Card className="foodHive-card group hover:shadow-lg transition-all duration-300">
                                 {/* Image */}
                                 <div className="relative overflow-hidden rounded-t-lg">
                                     <img
@@ -185,7 +185,7 @@ const FavorisPage = () => {
                                     {/* Actions */}
                                     <div className="flex space-x-2">
                                         <Button
-                                            className="flex-1 akounamatata-button-primary"
+                                            className="flex-1 foodHive-button-primary"
                                             onClick={() => handleAddToCart(plat)}
                                             disabled={!plat.disponible}
                                         >

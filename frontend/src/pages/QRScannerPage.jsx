@@ -119,7 +119,7 @@ const QRScannerPage = () => {
               <Button
                 onClick={startScanning}
                 size="lg"
-                className="akounamatata-button-primary hover:bg-orange-700 w-full"
+                className="foodHive-button-primary hover:bg-orange-700 w-full"
               >
                 <Camera className="mr-2 h-5 w-5" />
                 Démarrer le scan

@@ -45,7 +45,7 @@ const AdminDashboardPage = () => {
   };
 
   const StatCard = ({ title, value, description, icon: Icon, trend, color = "primary" }) => (
-    <Card className="akounamatata-card">
+    <Card className="foodHive-card">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <Icon className={`h-4 w-4 text-${color}`} />
@@ -72,11 +72,11 @@ const AdminDashboardPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold akounamatata-text-gradient">
+        <h1 className="text-3xl font-bold foodHive-text-gradient">
           Tableau de Bord
         </h1>
         <p className="text-muted-foreground">
-          Vue d'ensemble de votre restaurant Akounamatata
+          Vue d'ensemble de votre restaurant FoodHive
         </p>
       </motion.div>
 
@@ -130,7 +130,7 @@ const AdminDashboardPage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="akounamatata-card">
+          <Card className="foodHive-card">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <ShoppingBag className="mr-2 h-5 w-5" />
@@ -182,7 +182,7 @@ const AdminDashboardPage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card className="akounamatata-card">
+          <Card className="foodHive-card">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Table className="mr-2 h-5 w-5" />
@@ -231,7 +231,7 @@ const AdminDashboardPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardHeader>
             <CardTitle className="flex items-center">
               <AlertCircle className="mr-2 h-5 w-5" />

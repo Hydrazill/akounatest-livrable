@@ -70,7 +70,7 @@ const TableOccupationBanner = () => {
 
                                         <div className="flex items-center">
                                             <MapPin className="h-4 w-4 mr-1" />
-                                            Restaurant Akounamatata
+                                            Restaurant FoodHive
                                         </div>
                                     </div>
                                 </div>

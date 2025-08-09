@@ -191,7 +191,7 @@ const AdminTablesPage = () => {
         className="flex flex-col md:flex-row md:items-center justify-between"
       >
         <div>
-          <h1 className="text-3xl font-bold akounamatata-text-gradient">
+          <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Tables
           </h1>
           <p className="text-muted-foreground">
@@ -207,7 +207,7 @@ const AdminTablesPage = () => {
             <RefreshCw className="h-4 w-4 mr-2" />
             Actualiser
           </Button>
-          <Button className="akounamatata-button-primary" onClick={() => setIsDialogOpen(true)}>
+          <Button className="foodHive-button-primary" onClick={() => setIsDialogOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
             Nouvelle table
           </Button>
@@ -221,7 +221,7 @@ const AdminTablesPage = () => {
         transition={{ delay: 0.1 }}
         className="grid gap-4 md:grid-cols-4"
       >
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardContent className="p-6">
             <div className="flex items-center">
               <MapPin className="h-8 w-8 text-primary" />
@@ -233,7 +233,7 @@ const AdminTablesPage = () => {
           </CardContent>
         </Card>
 
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardContent className="p-6">
             <div className="flex items-center">
               <XCircle className="h-8 w-8 text-red-500" />
@@ -245,7 +245,7 @@ const AdminTablesPage = () => {
           </CardContent>
         </Card>
 
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardContent className="p-6">
             <div className="flex items-center">
               <CheckCircle className="h-8 w-8 text-green-500" />
@@ -257,7 +257,7 @@ const AdminTablesPage = () => {
           </CardContent>
         </Card>
 
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardContent className="p-6">
             <div className="flex items-center">
               <Users className="h-8 w-8 text-blue-500" />
@@ -280,7 +280,7 @@ const AdminTablesPage = () => {
         {tables.map((table) => (
           <Card 
             key={table._id} 
-            className={`akounamatata-card cursor-pointer transition-all duration-200 ${
+            className={`foodHive-card cursor-pointer transition-all duration-200 ${
               table.statutOccupee 
                 ? 'border-red-200 bg-red-50 hover:bg-red-100' 
                 : 'border-green-200 bg-green-50 hover:bg-green-100'
@@ -390,7 +390,7 @@ const AdminTablesPage = () => {
         ))}
 
         {/* Carte d'ajout */}
-        <Card className="akounamatata-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
+        <Card className="foodHive-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
           <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[200px]">
             <Plus className="h-12 w-12 text-muted-foreground mb-4" />
             <h3 className="font-semibold text-muted-foreground">Ajouter une table</h3>
@@ -456,7 +456,7 @@ const AdminTablesPage = () => {
           <p className="text-muted-foreground mb-6">
             Commencez par ajouter des tables à votre restaurant
           </p>
-          <Button className="akounamatata-button-primary">
+          <Button className="foodHive-button-primary">
             <Plus className="h-4 w-4 mr-2" />
             Ajouter une table
           </Button>
@@ -524,7 +524,7 @@ const AdminTablesPage = () => {
               }>
                 Annuler
               </Button>
-              <Button type="submit" className="bg-orange-600 hover:bg-orange-700 akounamatata-button-primary">
+              <Button type="submit" className="bg-orange-600 hover:bg-orange-700 foodHive-button-primary">
                 {editingTable ? 'Modifier' : 'Créer'}
               </Button>
             </div>

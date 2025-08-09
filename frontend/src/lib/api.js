@@ -15,7 +15,7 @@ export const api = axios.create({
 // Intercepteur pour ajouter le token d'authentification
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('akounamatata_token');
+    const token = localStorage.getItem('foodHive_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -34,8 +34,8 @@ api.interceptors.response.use(
   (error) => {
     // Gestion des erreurs d'authentification
     if (error.response?.status === 401) {
-      localStorage.removeItem('akounamatata_token');
-      localStorage.removeItem('akounamatata_user');
+      localStorage.removeItem('foodHive_token');
+      localStorage.removeItem('foodHive_user');
       window.location.href = '/login';
     }
     

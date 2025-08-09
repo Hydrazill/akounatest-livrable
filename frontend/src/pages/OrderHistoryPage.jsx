@@ -55,12 +55,12 @@ const OrderHistoryPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h1 className="text-4xl font-bold mb-4 akounamatata-text-gradient flex items-center justify-center">
+        <h1 className="text-4xl font-bold mb-4 foodHive-text-gradient flex items-center justify-center">
           <History className="mr-3 h-8 w-8" />
           Historique des Commandes
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Retrouvez toutes vos commandes passées chez Akounamatata
+          Retrouvez toutes vos commandes passées chez FoodHive
         </p>
       </motion.div>
 
@@ -76,7 +76,7 @@ const OrderHistoryPage = () => {
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
             Vous n'avez pas encore passé de commande. Découvrez notre délicieux menu !
           </p>
-          <Button asChild className="akounamatata-button-primary">
+          <Button asChild className="foodHive-button-primary">
             <a href="/menu">Commander maintenant</a>
           </Button>
         </motion.div>
@@ -95,7 +95,7 @@ const OrderHistoryPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="akounamatata-card">
+              <Card className="foodHive-card">
                 <CardHeader>
                   <div className="flex flex-col md:flex-row md:items-center justify-between">
                     <div>

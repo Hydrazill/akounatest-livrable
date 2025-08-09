@@ -141,7 +141,7 @@ const Cart = () => {
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: -20 }}
-                                                className="akounamatata-card p-4"
+                                                className="foodHive-card p-4"
                                             >
                                                 <div className="flex space-x-3">
                                                     {/* Image du plat */}
@@ -226,7 +226,7 @@ const Cart = () => {
                                         {/* Actions */}
                                         <div className="space-y-2">
                                             <Button 
-                                                className="w-full akounamatata-button-primary"
+                                                className="w-full foodHive-button-primary"
                                                 onClick={handleCheckout}
                                             >
                                                 Commander ({formatPrice(panier.total)})

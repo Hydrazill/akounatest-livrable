@@ -156,7 +156,7 @@ const AdminUtilisateursPage = () => {
               <RefreshCw className="h-4 w-4 mr-2" />
               Actualiser
             </Button>
-          <Button className="akounamatata-button-primary">
+          <Button className="foodHive-button-primary">
             <UserPlus className="h-4 w-4 mr-2" />
             Nouvel utilisateur
           </Button>

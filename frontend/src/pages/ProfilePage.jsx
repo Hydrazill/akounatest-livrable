@@ -111,7 +111,7 @@ const ProfilePage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="akounamatata-card">
+        <Card className="foodHive-card">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -144,7 +144,7 @@ const ProfilePage = () => {
                     size="sm"
                     onClick={handleSave}
                     disabled={isLoading}
-                    className="akounamatata-button-primary"
+                    className="foodHive-button-primary"
                   >
                     {isLoading ? (
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />

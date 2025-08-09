@@ -15,8 +15,8 @@ export const useAuthStore = create(
 
       // Actions
       login: (user, token) => {
-        localStorage.setItem('akounamatata_token', token);
-        localStorage.setItem('akounamatata_user', JSON.stringify(user));
+        localStorage.setItem('foodHive_token', token);
+        localStorage.setItem('foodHive_user', JSON.stringify(user));
         set({
           user,
           token,
@@ -26,8 +26,8 @@ export const useAuthStore = create(
       },
 
       logout: () => {
-        localStorage.removeItem('akounamatata_token');
-        localStorage.removeItem('akounamatata_user');
+        localStorage.removeItem('foodHive_token');
+        localStorage.removeItem('foodHive_user');
         set({
           user: null,
           token: null,
@@ -40,7 +40,7 @@ export const useAuthStore = create(
 
       updateUser: (userData) => {
         const updatedUser = { ...get().user, ...userData };
-        localStorage.setItem('akounamatata_user', JSON.stringify(updatedUser));
+        localStorage.setItem('foodHive_user', JSON.stringify(updatedUser));
         set({ user: updatedUser });
       },
 
@@ -51,8 +51,8 @@ export const useAuthStore = create(
 
       // Initialiser depuis le localStorage
       initializeAuth: () => {
-        const token = localStorage.getItem('akounamatata_token');
-        const userStr = localStorage.getItem('akounamatata_user');
+        const token = localStorage.getItem('foodHive_token');
+        const userStr = localStorage.getItem('foodHive_user');
         
         if (token && userStr) {
           try {
@@ -70,7 +70,7 @@ export const useAuthStore = create(
       },
     }),
     {
-      name: 'akounamatata-auth',
+      name: 'foodHive-auth',
       partialize: (state) => ({
         user: state.user,
         token: state.token,
@@ -147,7 +147,7 @@ export const useTableStore = create(
       clearTable: () => set({ table: null }),
     }),
     {
-      name: 'akounamatata_table',
+      name: 'foodHive_table',
       getStorage: () => localStorage,
     }
   )
@@ -171,7 +171,7 @@ export const useFavorisStore = create(
       clearFavoris: () => set({ favoris: [] }),
     }),
     {
-      name: 'akounamatata_favoris',
+      name: 'foodHive_favoris',
       getStorage: () => localStorage,
     }
   )

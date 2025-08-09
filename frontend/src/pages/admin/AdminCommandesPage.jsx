@@ -78,7 +78,7 @@ const AdminCommandesPage = () => {
             key="confirm"
             size="sm"
             onClick={() => handleStatusChange(commande._id, 'confirmee')}
-            className="akounamatata-button-primary"
+            className="foodHive-button-primary"
           >
             <CheckCircle className="h-3 w-3 mr-1" />
             Confirmer
@@ -177,7 +177,7 @@ const AdminCommandesPage = () => {
         className="flex flex-col md:flex-row md:items-center justify-between"
       >
         <div>
-          <h1 className="text-3xl font-bold akounamatata-text-gradient">
+          <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Commandes
           </h1>
           <p className="text-muted-foreground">
@@ -280,7 +280,7 @@ const AdminCommandesPage = () => {
           {['en_attente', 'confirmee', 'en_preparation', 'prete'].map((status) => (
             <TabsContent key={status} value={status} className="space-y-4">
               {getCommandesByStatus(status).map((commande) => (
-                <Card key={commande._id} className="akounamatata-card">
+                <Card key={commande._id} className="foodHive-card">
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center justify-between">
                       <div>

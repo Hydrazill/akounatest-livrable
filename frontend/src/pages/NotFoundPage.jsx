@@ -23,7 +23,7 @@ const NotFoundPage = () => {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h1 className="text-9xl font-bold akounamatata-text-gradient mb-4">
+          <h1 className="text-9xl font-bold foodHive-text-gradient mb-4">
             404
           </h1>
           <div className="text-6xl mb-4">🍽️</div>
@@ -53,7 +53,7 @@ const NotFoundPage = () => {
           className="space-y-4"
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild className="akounamatata-button-primary">
+            <Button asChild className="foodHive-button-primary">
               {user?.role === 'admin' ? (
                 <Link to="/admin">
                   <Home className="mr-2 h-4 w-4" />

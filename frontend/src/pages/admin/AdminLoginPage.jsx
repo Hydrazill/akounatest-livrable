@@ -106,7 +106,7 @@ const AdminLoginPage = () => {
           </Button>
         </motion.div>
 
-        <Card className="akounamatata-card border-primary/20">
+        <Card className="foodHive-card border-primary/20">
           <CardHeader className="text-center">
             <motion.div
               initial={{ scale: 0.8 }}
@@ -123,7 +123,7 @@ const AdminLoginPage = () => {
               Administration
             </CardTitle>
             <CardDescription>
-              Connectez-vous à l'interface d'administration Akounamatata
+              Connectez-vous à l'interface d'administration FoodHive
             </CardDescription>
           </CardHeader>
 
@@ -136,7 +136,7 @@ const AdminLoginPage = () => {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="admin@akounamatata.ci"
+                  placeholder="admin@foodHive.ci"
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'border-destructive' : ''}
@@ -181,7 +181,7 @@ const AdminLoginPage = () => {
               {/* Bouton de connexion */}
               <Button
                 type="submit"
-                className="w-full akounamatata-button-primary"
+                className="w-full foodHive-button-primary"
                 disabled={isLoading}
               >
                 {isLoading ? (
