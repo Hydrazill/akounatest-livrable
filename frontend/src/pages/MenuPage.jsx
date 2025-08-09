@@ -168,7 +168,7 @@ const MenuPage = () => {
                     <h1 className="text-4xl font-bold mb-4 foodHive-text-gradient">
                         Notre Menu
                     </h1>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
+                    <p className="text-primary-foreground max-w-2xl mx-auto">
                         Découvrez nos délicieux plats inspirés de la cuisine africaine contemporaine
                     </p>
                     
@@ -190,10 +190,10 @@ const MenuPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="flex flex-col md:flex-row gap-4 mb-8"
+                    className="flex flex-col md:flex-row gap-4 mb-8 text-primary-foreground"
                 >
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-foreground h-4 w-4" />
                         <Input
                             placeholder="Rechercher un plat..."
                             value={searchTerm}
@@ -250,7 +250,7 @@ const MenuPage = () => {
                                                         variant="ghost"
                                                         size="sm"
                                                         className={`absolute top-2 right-2 bg-background/50 hover:bg-background/60 ${
-                                                            isFavorite(plat._id) ? 'text-red-500' : 'text-muted-foreground'
+                                                            isFavorite(plat._id) ? 'text-red-500' : 'text-primary-foreground'
                                                         }`}
                                                         onClick={() => handleToggleFavorite(plat)}
                                                     >
@@ -332,7 +332,7 @@ const MenuPage = () => {
                                 >
                                     <div className="text-6xl mb-4">🍽️</div>
                                     <h3 className="text-lg font-semibold mb-2">Aucun plat trouvé</h3>
-                                    <p className="text-muted-foreground">
+                                    <p className="text-primary-foreground">
                                         {searchTerm 
                                             ? 'Aucun plat ne correspond à votre recherche'
                                             : 'Aucun plat disponible dans cette catégorie'
