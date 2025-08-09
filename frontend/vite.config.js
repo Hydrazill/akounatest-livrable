@@ -7,7 +7,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(),tailwindcss()],
   server: {
-    allowedHosts: ['71145feed1ac.ngrok-free.app'],
+    allowedHosts: ['akounatest-livrable.onrender.com'],
     host: true,
     port: 5173,
     strictPort: true,

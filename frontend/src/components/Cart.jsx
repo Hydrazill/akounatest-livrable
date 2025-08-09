@@ -42,8 +42,8 @@ const Cart = () => {
             }
             try {
                 const response = await panierService.updateItem(clientId, itemData);
-                toast.success('panier mis a jour');
                 setPanier(response?.data?.panier);
+                toast.success('panier mis a jour');
             } catch(error) {
                 console.error('erreur lors de la mise a jour du panier: ', error);
                 toast.error(error.message);
