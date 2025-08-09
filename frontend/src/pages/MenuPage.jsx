@@ -219,7 +219,7 @@ const MenuPage = () => {
                             ))}
                         </TabsList>
 
-                        <TabsContent value={selectedCategory} className="mt-8">
+                        <TabsContent value={selectedCategory} className="mt-12">
                             {/* Grille des plats */}
                             <AnimatePresence>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -249,7 +249,7 @@ const MenuPage = () => {
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
-                                                        className={`absolute top-2 right-2 bg-background/80 hover:bg-background ${
+                                                        className={`absolute top-2 right-2 bg-background/50 hover:bg-background/60 ${
                                                             isFavorite(plat._id) ? 'text-red-500' : 'text-muted-foreground'
                                                         }`}
                                                         onClick={() => handleToggleFavorite(plat)}
@@ -311,7 +311,7 @@ const MenuPage = () => {
                                                             variant="outline"
                                                             size="sm"
                                                             onClick={() => handleToggleFavorite(plat)}
-                                                            className={isFavorite(plat._id) ? 'text-red-500 border-red-200' : ''}
+                                                            className={isFavorite(plat._id) ? 'text-red-500 border-red-200 bg-background/50 hover:bg-background/60' : ''}
                                                         >
                                                             <Heart className={`h-4 w-4 ${isFavorite(plat._id) ? 'fill-current' : ''}`} />
                                                         </Button>
