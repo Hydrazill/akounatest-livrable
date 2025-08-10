@@ -82,12 +82,12 @@ const Header = () => {
                 >
                   Favoris
                 </Link>
-                {/* <Link 
+                <Link 
                   to="/orders" 
                   className="hover:text-primary transition-colors"
                 >
                   Historique
-                </Link> */}
+                </Link>
               </>
             )}
           </nav>
@@ -141,12 +141,12 @@ const Header = () => {
                       Mes Favoris
                     </Link>
                   </DropdownMenuItem>
-                  {/* <DropdownMenuItem asChild>
+                  <DropdownMenuItem asChild>
                     <Link to="/orders" className="flex items-center">
                       <History className="mr-2 h-4 w-4" />
                       Historique
                     </Link>
-                  </DropdownMenuItem> */}
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" />
@@ -242,13 +242,13 @@ const Header = () => {
                     >
                       Mes Favoris
                     </Link>
-                    {/* <Link 
+                    <Link 
                       to="/orders" 
                       className="block px-4 py-2 hover:bg-accent rounded-md transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Historique
-                    </Link> */}
+                    </Link>
                     <button
                       onClick={() => {
                         handleLogout();

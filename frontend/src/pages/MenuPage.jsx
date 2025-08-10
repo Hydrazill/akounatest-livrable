@@ -278,7 +278,7 @@ const MenuPage = () => {
                                                     </div>
 
                                                     {/* Description */}
-                                                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                                                    <p className="text-foreground text-sm mb-4 line-clamp-2">
                                                         {plat.description}
                                                     </p>
 

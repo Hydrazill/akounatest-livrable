@@ -39,7 +39,7 @@ const NotFoundPage = () => {
           <h2 className="text-2xl font-bold mb-4">
             Oups ! Page introuvable
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-primary-foreground mb-6">
             La page que vous recherchez semble avoir été déplacée ou n'existe plus. 
             Peut-être qu'elle a été mangée ? 🤔
           </p>
@@ -73,13 +73,13 @@ const NotFoundPage = () => {
             }
             </Button>
             
-            <Button variant="outline" onClick={() => window.history.back()}>
+            <Button variant="outline" onClick={() => window.history.back()} className="text-sm text-primary-foreground">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Page précédente
             </Button>
           </div>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-primary-foreground">
             Ou explorez notre délicieux{' '}
             <Link to="/menu" className="text-primary hover:underline">
               menu du jour

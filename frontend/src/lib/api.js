@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Configuration de base de l'API
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://localhost:5000/api' // 'http://192.168.189.103:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api' // 'http://192.168.189.103:5000/api';
 
 // Instance Axios configurée
 export const api = axios.create({
@@ -177,7 +177,7 @@ export const commandeService = {
   
   getStats: (params = {}) => api.get('/commandes/stats', { params }),
   
-  getUserCommande: (clientId, tableId) => api.get(`/commandes/${clientId}/${tableId}`),
+  getUserCommande: (id) => api.get(`/commandes/${id}`),
   
   updateStatus: (id, statusData) => api.put(`/commandes/${id}/status`, statusData),
   

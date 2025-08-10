@@ -18,7 +18,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import FavorisPage from './pages/FavorisPage';
 import QRScannerPage from './pages/QRScannerPage';
-// import OrderHistoryPage from './pages/OrderHistoryPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProfilePage from './pages/ProfilePage';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
@@ -76,11 +76,11 @@ function App() {
                     <FavorisPage />
                   </ProtectedRoute>
                 } />
-                {/* <Route path="orders" element={
+                <Route path="orders" element={
                   <ProtectedRoute>
                     <OrderHistoryPage />
                   </ProtectedRoute>
-                } /> */}
+                } />
               </Route>
 
               {/* Routes admin */}

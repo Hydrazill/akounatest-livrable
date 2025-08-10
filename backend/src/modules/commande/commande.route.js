@@ -83,12 +83,12 @@ router.get('/stats', auth, adminAuth, async (req, res) => {
   }
 });
 
-// GET /api/commandes/:id
-router.get('/:clientId/:tableId', auth, async (req, res) => {
+// @route   GET /api/commandes/:id
+// @desc    Obtenir une commande par ID
+// @access  Private (Owner ou Admin)
+router.get('/:id', auth, async (req, res) => {
   try {
-    const { clientId, tableId } = req.params;
-    const params = { clientId: clientId, tableId: tableId, statut: "en_attente" }
-    const commande = await Commande.findOne(params) // findById(req.params.id)
+    const commande = await Commande.findById(req.params.id)
       .populate('clientId', 'nom email telephone')
       .populate('tableId', 'numero capacite')
       .populate('items.platId', 'nom description prix imageUrl')

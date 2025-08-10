@@ -79,7 +79,7 @@ const Cart = () => {
     }
 
     const unavailableItemLength = (panier) => {
-        return panier?.items.reduce((count, item) => {
+        return panier?.items?.reduce((count, item) => {
             return item.platId.disponible ? count : count + 1;
         }, 0);
     }
@@ -105,24 +105,24 @@ const Cart = () => {
                     <div className="flex items-center justify-between p-4 border-b border-border">
                         <div className="flex items-center space-x-2">
                             <ShoppingBag className="h-5 w-5" />
-                            <h2 className="text-lg font-semibold">Mon Panier</h2>
+                            <h2 className="text-lg font-semibold foodHive-text-gradient">Mon Panier</h2>
                             {itemCount > 0 && (
                                 <Badge variant="secondary">{itemCount}</Badge>
                             )}
                         </div>
                         <Button variant="ghost" size="sm" onClick={closeCart}>
-                            <X className="h-5 w-5" />
+                            <X className="h-5 w-5 text-primary-foreground" />
                         </Button>
                     </div>
 
                     {/* Contenu */}
                     <div className="flex flex-col h-full">
-                        {(panier?.items.length === 0) || (panier?.items.length === unavailableItemLength(panier)) ? (
+                        {(panier?.items?.length === 0) || (panier?.items?.length === unavailableItemLength(panier)) ? (
                             /* Panier vide */
-                            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                                <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
+                            <div className="flex-1 text-primary-foreground flex flex-col items-center justify-center p-8 text-center">
+                                <ShoppingBag className="h-16 w-16 mb-4" />
                                 <h3 className="text-lg font-medium mb-2">Votre panier est vide</h3>
-                                <p className="text-muted-foreground mb-6">
+                                <p className="mb-6">
                                     Ajoutez des plats délicieux à votre panier pour commencer
                                 </p>
                                 <Button onClick={closeCart}>

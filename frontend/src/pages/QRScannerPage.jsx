@@ -100,8 +100,8 @@ const QRScannerPage = () => {
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="text-center">
         <QrCode className="h-16 w-16 mx-auto text-orange-600 mb-4" />
-        <h1 className="text-3xl font-bold mb-2">Scanner QR Code</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-3xl font-bold mb-2 foodHive-text-gradient">Scanner QR Code</h1>
+        <p className="text-primary-foreground">
           Scannez un code QR pour être automatiquement redirigé vers l'adresse contenue
         </p>
       </div>
@@ -110,7 +110,7 @@ const QRScannerPage = () => {
         <Card>
           <CardHeader className="text-center">
             <CardTitle>Prêt à scanner</CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm text-foreground">
               Cliquez sur le bouton ci-dessous pour activer la caméra et scanner un QR code
             </CardDescription>
           </CardHeader>
@@ -133,7 +133,7 @@ const QRScannerPage = () => {
         <Card>
           <CardHeader className="text-center">
             <CardTitle>Scan en cours...</CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm text-foreground">
               Pointez votre caméra vers le QR code
             </CardDescription>
           </CardHeader>
@@ -150,10 +150,10 @@ const QRScannerPage = () => {
               </div>
             </div>
             <div className="text-center mt-4 space-y-2">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground">
                 Placez le QR code dans le cadre blanc
               </p>
-              <Button variant="outline" onClick={stopScanning}>
+              <Button variant="outline" onClick={stopScanning} className="text-sm text-primary-foreground">
                 <StopCircle className="mr-2 h-4 w-4" />
                 Arrêter le scan
               </Button>
@@ -172,9 +172,9 @@ const QRScannerPage = () => {
       {scanResult && (
         <Card>
           <CardHeader>
-            <CardTitle>Adresse scannée</CardTitle>
+            <CardTitle className="text-lg text-foreground">Adresse scannée</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="text-sm text-foreground">
             <div className="bg-muted p-4 rounded-lg">
               <code className="text-sm break-all">{scanResult}</code>
             </div>

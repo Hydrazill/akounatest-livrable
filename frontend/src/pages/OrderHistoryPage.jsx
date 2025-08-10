@@ -1,28 +1,57 @@
+
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { History, Calendar, Clock, MapPin, Eye } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-import { commandeService } from '@/lib/api';
+import { commandeService, userService } from '@/lib/api';
 import { useAuthStore, useTableStore } from '../lib/store';
 import { formatPrice, formatDateTime, getStatusColor, getStatusLabel } from '@/lib/utils';
 
 const OrderHistoryPage = () => {
+  const [commandes, setCommandes] = useState([]);
   // Récupérer l'historique des commandes
   const { user } = useAuthStore();
   const { table } = useTableStore();
-  const { data: commandesData, isLoading } = useQuery({
-    queryKey: ['user-commandes'],
-    queryFn: () => commandeService.getUserCommandes(user.id || import.meta.env.VITE_USER, table._id),
-    enabled: !!user?.id && !!table?._id
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ['user-infos'],
+    queryFn: () => userService.getUser(user?.id),
+    enabled: !!user?.id,
+    refetchInterval: 30000
   });
 
-  const commandes = commandesData?.data?.commandes || [];
-  console.log(commandes)
+  const userRedeem = userData?.data?.user || null;
+  
+  useEffect(() => {
+    let isMounted = true;
+    const fetchCommandes = async () => {
+      if (!userRedeem?.historiqueCommandes) {
+        setCommandes([]);
+        return;
+      }
+      try {
+        const commandes = await Promise.all(
+          userRedeem?.historiqueCommandes.map(id =>
+            commandeService.getUserCommande(id).then(response => response?.data?.commande)
+          )
+        );
+        console.log(commandes)
+        if (isMounted) setCommandes(commandes);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des commandes:', error);
+        toast.error('Erreur lors de la récupération des commandes.');
+        if (isMounted) setCommandes([]);
+      }
+    };
+    fetchCommandes();
+    return () => { isMounted = false; };
+  }, [userRedeem]);
 
   if (isLoading) {
     return (
@@ -59,12 +88,12 @@ const OrderHistoryPage = () => {
           <History className="mr-3 h-8 w-8" />
           Historique des Commandes
         </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-primary-foreground max-w-2xl mx-auto">
           Retrouvez toutes vos commandes passées chez FoodHive
         </p>
       </motion.div>
 
-      {commandes.length === 0 ? (
+      {commandes?.length === 0 ? (
         /* Aucune commande */
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +102,7 @@ const OrderHistoryPage = () => {
         >
           <History className="h-24 w-24 text-muted-foreground mx-auto mb-6" />
           <h2 className="text-2xl font-semibold mb-4">Aucune commande pour le moment</h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+          <p className="text-primary-foreground mb-8 max-w-md mx-auto">
             Vous n'avez pas encore passé de commande. Découvrez notre délicieux menu !
           </p>
           <Button asChild className="foodHive-button-primary">
@@ -102,7 +131,7 @@ const OrderHistoryPage = () => {
                       <CardTitle className="text-lg">
                         Commande #{commande.numero || commande._id.slice(-6)}
                       </CardTitle>
-                      <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-1">
+                      <div className="flex items-center space-x-4 text-sm text-foreground mt-1">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {formatDateTime(commande.dateCommande)}
@@ -110,7 +139,7 @@ const OrderHistoryPage = () => {
                         {commande.tableId && (
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
-                            Table {commande.tableId.numero || commande.tableId}
+                            Table {commande?.tableId?.numero || commande?.tableId?._id}
                           </div>
                         )}
                       </div>
@@ -130,14 +159,14 @@ const OrderHistoryPage = () => {
                 <CardContent>
                   {/* Liste des plats */}
                   <div className="space-y-3">
-                    {commande.plats?.map((item, itemIndex) => (
+                    {commande.items?.map((item, itemIndex) => (
                       <div key={itemIndex} className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="w-12 h-12 bg-muted rounded-md flex items-center justify-center text-xs font-medium">
                             {item.quantite}x
                           </div>
                           <div>
-                            <p className="font-medium">{item.plat?.nom || 'Plat supprimé'}</p>
+                            <p className="font-medium">{item?.nom || 'Plat supprimé'}</p>
                             {item.commentaires && (
                               <p className="text-sm text-muted-foreground">
                                 Note: {item.commentaires}
@@ -146,7 +175,7 @@ const OrderHistoryPage = () => {
                           </div>
                         </div>
                         <span className="font-medium">
-                          {formatPrice(item.sousTotal)}
+                          {formatPrice(item?.prixUnitaire)}
                         </span>
                       </div>
                     ))}
@@ -156,11 +185,11 @@ const OrderHistoryPage = () => {
 
                   {/* Résumé */}
                   <div className="flex justify-between items-center">
-                    <div className="text-sm text-muted-foreground">
-                      {commande.plats?.length || 0} article(s)
+                    <div className="text-sm text-foreground">
+                      {commande.items?.length || 0} article(s)
                     </div>
                     <div className="text-right">
-                      <p className="text-sm text-muted-foreground">Total</p>
+                      <p className="text-sm text-foreground">Total</p>
                       <p className="text-lg font-bold text-primary">
                         {formatPrice(commande.total)}
                       </p>
@@ -189,12 +218,12 @@ const OrderHistoryPage = () => {
                   )}
 
                   {/* Actions */}
-                  <div className="flex justify-end mt-4">
+                  {/* <div className="flex justify-end mt-4">
                     <Button variant="outline" size="sm">
                       <Eye className="h-4 w-4 mr-2" />
                       Voir les détails
                     </Button>
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             </motion.div>

@@ -135,7 +135,7 @@ const RegisterPage = () => {
               <CardTitle className="text-2xl font-bold foodHive-text-gradient">
                 Inscription
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm text-foreground">
                 Créez votre compte FoodHive
               </CardDescription>
             </motion.div>
@@ -280,7 +280,7 @@ const RegisterPage = () => {
 
             {/* Liens */}
             <div className="mt-6 text-center space-y-2">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground">
                 Déjà un compte ?{' '}
                 <Link 
                   to="/login" 
@@ -292,7 +292,7 @@ const RegisterPage = () => {
               
               <Link 
                 to="/menu" 
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm text-foreground hover:text-muted-foreground transition-colors"
               >
                 Continuer sans compte
               </Link>

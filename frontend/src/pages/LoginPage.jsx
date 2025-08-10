@@ -115,7 +115,7 @@ const LoginPage = () => {
               <CardTitle className="text-2xl font-bold foodHive-text-gradient">
                 Connexion
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm text-foreground">
                 Connectez-vous à votre compte FoodHive
               </CardDescription>
             </motion.div>
@@ -194,7 +194,7 @@ const LoginPage = () => {
 
             {/* Liens */}
             <div className="mt-6 text-center space-y-2">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground">
                 Pas encore de compte ?{' '}
                 <Link 
                   to="/register" 
@@ -206,7 +206,7 @@ const LoginPage = () => {
               
               <Link 
                 to="/menu" 
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm text-foreground hover:text-muted-foreground transition-colors"
               >
                 Continuer sans compte
               </Link>

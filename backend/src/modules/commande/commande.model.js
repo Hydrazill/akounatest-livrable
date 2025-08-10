@@ -45,7 +45,7 @@ const commandeSchema = new mongoose.Schema({
   },
   menuDuJourId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'MenuDuJour',
+    ref: 'MenusDuJour',
     default: null
   },
   sousTotal: {

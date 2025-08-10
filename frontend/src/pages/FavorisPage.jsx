@@ -106,7 +106,7 @@ const FavorisPage = () => {
                     <Heart className="mr-3 h-8 w-8 text-red-500" />
                     Mes Favoris
                 </h1>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-primary-foreground max-w-2xl mx-auto">
                     Retrouvez tous vos plats préférés en un seul endroit
                 </p>
             </motion.div>
@@ -178,7 +178,7 @@ const FavorisPage = () => {
                                     </div>
 
                                     {/* Description */}
-                                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                                    <p className="text-foreground text-sm mb-4 line-clamp-2">
                                         {plat.description}
                                     </p>
 

@@ -115,8 +115,8 @@ const ProfilePage = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-2xl font-bold">Mon Profil</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-2xl font-bold foodHive-text-gradient">Mon Profil</CardTitle>
+                <CardDescription className="text-sm text-foreground">
                   Gérez vos informations personnelles
                 </CardDescription>
               </div>
@@ -125,7 +125,7 @@ const ProfilePage = () => {
                 <Button
                   variant="outline"
                   onClick={handleEdit}
-                  className="flex items-center space-x-2"
+                  className="flex items-center space-x-2 text-sm text-primary-foreground"
                 >
                   <Edit className="h-4 w-4" />
                   <span>Modifier</span>
@@ -165,7 +165,7 @@ const ProfilePage = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold">{user?.nom}</h3>
-                <p className="text-muted-foreground">{user?.role === 'admin' ? 'Administrateur' : user?.role === 'client' ? 'Client' : 'Gestionnaire'}</p>
+                <p className="text-foreground">{user?.role === 'admin' ? 'Administrateur' : user?.role === 'client' ? 'Client' : 'Gestionnaire'}</p>
               </div>
             </div>
 
@@ -251,13 +251,13 @@ const ProfilePage = () => {
               <h4 className="font-semibold mb-4">Informations du compte</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-muted-foreground">Date d'inscription:</span>
+                  <span className="text-foreground">Date d'inscription:</span>
                   <p className="font-medium">
                     {user?.dateCreation ? new Date(user.dateCreation).toLocaleDateString('fr-FR') : 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Dernier accès:</span>
+                  <span className="text-foreground">Dernier accès:</span>
                   <p className="font-medium">
                     {user?.dernierAcces ? new Date(user.dernierAcces).toLocaleDateString('fr-FR') : 'N/A'}
                   </p>
