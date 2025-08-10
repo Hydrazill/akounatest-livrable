@@ -82,13 +82,13 @@ const LayoutAdmin = () => {
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link to="/" className="flex items-center gap-2 font-semibold">
-              <UtensilsCrossed className="h-6 w-6" />
-              <span className="">FOODHIVE</span>
+            <Link to="/" className="flex items-center gap-2 font-semibold foodHive-text-gradient">
+              <UtensilsCrossed className="h-6 w-6" color='white' />
+              <span>FOODHIVE</span>
             </Link>
           </div>
           <div className="flex-1">
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <nav className="grid items-start px-2 text-sm text-primary-foreground font-medium lg:px-4">
               {adminNavItems.map((item) => (
                 <NavLink key={item.href} {...item} />
               ))}
@@ -99,7 +99,7 @@ const LayoutAdmin = () => {
 
       <div className="flex flex-col">
         {/* Header */}
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+        <header className="flex h-14 items-center gap-4 border-b text-foreground bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           {/* Mobile Menu */}
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>

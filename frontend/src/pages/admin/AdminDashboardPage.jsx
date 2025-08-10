@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 
 import { commandeService, tableService } from '@/lib/api';
 import { formatPrice, getStatusColor, getStatusLabel } from '@/lib/utils';
+import { useEffect } from 'react';
 
 const AdminDashboardPage = () => {
   // Récupérer les données du dashboard
@@ -33,6 +34,10 @@ const AdminDashboardPage = () => {
 
   const commandes = commandesData?.data?.commandes || [];
   const tables = tablesData?.data?.tables || [];
+
+  useEffect(() => {
+    console.log(commandes)
+  }, [commandes]);
 
   // Calculer les statistiques
   const stats = {
@@ -52,7 +57,7 @@ const AdminDashboardPage = () => {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-foreground">
           {description}
         </p>
         {trend && (
@@ -75,7 +80,7 @@ const AdminDashboardPage = () => {
         <h1 className="text-3xl font-bold foodHive-text-gradient">
           Tableau de Bord
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-primary-foreground">
           Vue d'ensemble de votre restaurant FoodHive
         </p>
       </motion.div>
@@ -136,7 +141,7 @@ const AdminDashboardPage = () => {
                 <ShoppingBag className="mr-2 h-5 w-5" />
                 Commandes Récentes
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-foreground">
                 Les dernières commandes passées
               </CardDescription>
             </CardHeader>
@@ -150,8 +155,8 @@ const AdminDashboardPage = () => {
                         <p className="text-sm font-medium">
                           Commande #{commande._id.slice(-6)}
                         </p>
-                        <p className="text-xs text-muted-foreground">
-                          Table {commande.tableId?.numero || 'N/A'}
+                        <p className="text-xs text-foreground">
+                          {commande?.tableId ?  `Table ${commande?.tableId?.numero}` : 'A livrer'}
                         </p>
                       </div>
                     </div>
@@ -167,7 +172,7 @@ const AdminDashboardPage = () => {
                 ))}
                 
                 {commandes.length === 0 && (
-                  <p className="text-center text-muted-foreground py-4">
+                  <p className="text-center text-foreground py-4">
                     Aucune commande pour le moment
                   </p>
                 )}
@@ -188,7 +193,7 @@ const AdminDashboardPage = () => {
                 <Table className="mr-2 h-5 w-5" />
                 État des Tables
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-foreground">
                 Occupation en temps réel
               </CardDescription>
             </CardHeader>
@@ -216,7 +221,7 @@ const AdminDashboardPage = () => {
               </div>
               
               {tables.length === 0 && (
-                <p className="text-center text-muted-foreground py-4">
+                <p className="text-center text-foreground py-4">
                   Aucune table configurée
                 </p>
               )}

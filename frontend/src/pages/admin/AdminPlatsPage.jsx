@@ -228,12 +228,12 @@ const AdminPlatsPage = () => {
           <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Plats
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-primary-foreground">
             Gérez vos plats et catégories
           </p>
         </div>
         
-        <div>
+        <div className='text-primary-foreground flex items-center space-x-2'>
           <Button
             onClick={() => queryClient.invalidateQueries(['admin-tables'])}
             variant="outline"
@@ -385,7 +385,7 @@ const AdminPlatsPage = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2">
+              <div className="flex justify-end space-x-2 text-primary-foreground">
                 <Button
                   type="button"
                   variant="outline"
@@ -486,7 +486,7 @@ const AdminPlatsPage = () => {
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex-1">
                         <h3 className="font-semibold text-lg">{plat.nom}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground">
                           {getCategoryName(plat.categorieId)}
                         </p>
                       </div>
@@ -496,7 +496,7 @@ const AdminPlatsPage = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    <p className="text-foreground text-sm mb-4 line-clamp-2">
                       {plat.description}
                     </p>
 
@@ -530,7 +530,7 @@ const AdminPlatsPage = () => {
 
                       <div className="flex space-x-1">
                         <Button variant="outline" size="sm" onClick={() => handleEdit(plat)}>
-                          <Edit className="h-3 w-3" />
+                          <Edit className="h-3 w-3" color='white' />
                         </Button>
                         <Button 
                           variant="outline" 
@@ -550,8 +550,8 @@ const AdminPlatsPage = () => {
               <Card className="foodHive-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
                 <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[200px]">
                   <Plus className="h-12 w-12 text-muted-foreground mb-4" />
-                  <h3 className="font-semibold text-muted-foreground">Ajouter une table</h3>
-                  <p className="text-sm text-muted-foreground text-center mt-2">
+                  <h3 className="font-semibold text-foreground">Ajouter une table</h3>
+                  <p className="text-sm text-foreground text-center mt-2">
                     Créez une nouvelle table pour votre restaurant
                   </p>
                 </CardContent>
@@ -561,9 +561,9 @@ const AdminPlatsPage = () => {
             {/* Message si aucun plat */}
             {filteredPlats.length === 0 && (
               <div className="text-center py-12">
-                <UtensilsCrossed className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                <UtensilsCrossed className="h-16 w-16 text-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Aucun plat trouvé</h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-foreground mb-6">
                   {searchTerm 
                     ? 'Aucun plat ne correspond à votre recherche'
                     : 'Commencez par ajouter des plats à votre menu'

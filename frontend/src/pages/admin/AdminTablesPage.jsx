@@ -194,7 +194,7 @@ const AdminTablesPage = () => {
           <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Tables
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-primary-foreground">
             Gérez vos tables et générez les QR codes
           </p>
         </div>
@@ -203,6 +203,7 @@ const AdminTablesPage = () => {
           <Button
             onClick={() => queryClient.invalidateQueries(['admin-tables'])}
             variant="outline"
+            className="text-primary-foreground"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
             Actualiser
@@ -226,7 +227,7 @@ const AdminTablesPage = () => {
             <div className="flex items-center">
               <MapPin className="h-8 w-8 text-primary" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-muted-foreground">Total</p>
+                <p className="text-sm font-medium text-foreground">Total</p>
                 <p className="text-2xl font-bold">{stats.total}</p>
               </div>
             </div>
@@ -238,7 +239,7 @@ const AdminTablesPage = () => {
             <div className="flex items-center">
               <XCircle className="h-8 w-8 text-red-500" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-muted-foreground">Occupées</p>
+                <p className="text-sm font-medium text-foreground">Occupées</p>
                 <p className="text-2xl font-bold">{stats.occupees}</p>
               </div>
             </div>
@@ -250,7 +251,7 @@ const AdminTablesPage = () => {
             <div className="flex items-center">
               <CheckCircle className="h-8 w-8 text-green-500" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-muted-foreground">Libres</p>
+                <p className="text-sm font-medium text-foreground">Libres</p>
                 <p className="text-2xl font-bold">{stats.libres}</p>
               </div>
             </div>
@@ -262,7 +263,7 @@ const AdminTablesPage = () => {
             <div className="flex items-center">
               <Users className="h-8 w-8 text-blue-500" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-muted-foreground">Capacité</p>
+                <p className="text-sm font-medium text-foreground">Capacité</p>
                 <p className="text-2xl font-bold">{stats.capaciteTotal}</p>
               </div>
             </div>
@@ -298,7 +299,7 @@ const AdminTablesPage = () => {
                   </div>
                   <div className="ml-3">
                     <h3 className="font-semibold">Table {table.numero}</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground">
                       {table.capacite} places
                     </p>
                   </div>
@@ -315,14 +316,14 @@ const AdminTablesPage = () => {
               {/* Client actuel */}
               {table.statutOccupee && table.clientActuel && (
                 <div className="mb-4 p-2 bg-white/50 rounded">
-                  <p className="text-xs text-muted-foreground">Client actuel:</p>
-                  <p className="text-sm font-medium">{table.clientActuel.nom}</p>
+                  <p className="text-xs text-foreground">Client actuel:</p>
+                  <p className="text-sm font-medium">{table?.clientActuel?.nom}</p>
                 </div>
               )}
 
-              <div className="ml-3">
+              <div className="ml-3 mb-3">
                 <h3 className="font-semibold">Restaurant : </h3>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm text-foreground">
                   {table.restaurantId}
                 </span>
               </div>
@@ -337,7 +338,7 @@ const AdminTablesPage = () => {
                     handleGenerateQR(table._id);
                     setSelectedTable(table);
                   }}
-                  className="flex-1"
+                  className="flex-1 text-primary-foreground"
                 >
                   <QrCode className="h-3 w-3 mr-1" />
                   QR
@@ -350,7 +351,7 @@ const AdminTablesPage = () => {
                       e.stopPropagation();
                       handleFreeTable(table._id);
                     }}
-                    className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+                    className="flex-1 bg-green-500 text-primary-foreground hover:bg-green-600 text-white"
                   >
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Libérer
@@ -370,7 +371,7 @@ const AdminTablesPage = () => {
                       })
                       setIsDialogOpen(true);
                     }}
-                    className="flex-1"
+                    className="flex-1 text-primary-foreground"
                   >
                     <Edit className="h-3 w-3 mr-1" />
                     Modifier
@@ -393,8 +394,8 @@ const AdminTablesPage = () => {
         <Card className="foodHive-card border-dashed border-2 border-muted-foreground/25 hover:border-primary/50 transition-colors cursor-pointer" onClick={() => setIsDialogOpen(true)}>
           <CardContent className="p-6 flex flex-col items-center justify-center h-full min-h-[200px]">
             <Plus className="h-12 w-12 text-muted-foreground mb-4" />
-            <h3 className="font-semibold text-muted-foreground">Ajouter une table</h3>
-            <p className="text-sm text-muted-foreground text-center mt-2">
+            <h3 className="font-semibold text-foreground">Ajouter une table</h3>
+            <p className="text-sm text-foreground text-center mt-2">
               Créez une nouvelle table pour votre restaurant
             </p>
           </CardContent>

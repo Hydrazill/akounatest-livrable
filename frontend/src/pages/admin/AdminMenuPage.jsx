@@ -188,7 +188,7 @@ const AdminMenuPage = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Gestion des Menus</h1>
+          <h1 className="text-3xl font-bold foodHive-text-gradient">Gestion des Menus</h1>
           <p className="text-muted-foreground">
             {menus.length} menu{menus.length > 1 ? 's' : ''} configuré{menus.length > 1 ? 's' : ''}
           </p>
@@ -197,6 +197,7 @@ const AdminMenuPage = () => {
           <Button
             onClick={() => queryClient.invalidateQueries(['admin-tables'])}
             variant="outline"
+            className="text-primary-foreground"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
             Actualiser
@@ -214,7 +215,7 @@ const AdminMenuPage = () => {
               <DialogTitle>
                 {editingMenu ? 'Modifier le menu' : 'Nouveau menu'}
               </DialogTitle>
-              <DialogDescription>
+              <DialogDescription className="text-foreground">
                 {editingMenu ? 'Modifiez les informations du menu' : 'Créez un nouveau menu pour le restaurant'}
               </DialogDescription>
             </DialogHeader>
@@ -286,12 +287,12 @@ const AdminMenuPage = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-foreground">
                   {selectedPlats.length} plat{selectedPlats.length > 1 ? 's' : ''} sélectionné{selectedPlats.length > 1 ? 's' : ''}
                 </p>
               </div>
 
-              <div className="flex justify-end space-x-2">
+              <div className="flex justify-end space-x-2 text-primary-foreground">
                 <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                   Annuler
                 </Button>
@@ -310,7 +311,7 @@ const AdminMenuPage = () => {
           <div className="text-center py-12">
             <UtensilsCrossed className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-lg font-medium mb-2">Aucun menu configuré</h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-foreground mb-4">
               Commencez par créer des menus pour votre restaurant
             </p>
             <Button onClick={() => setIsDialogOpen(true)} className="bg-orange-600 hover:bg-orange-700">
@@ -356,9 +357,9 @@ const AdminMenuPage = () => {
                       onClick={() => toggleMenuStatus(menu._id)}
                     >
                       {menu.statutActif ? (
-                        <ToggleRight className="h-4 w-4" />
+                        <ToggleRight className="h-4 w-4" color='white' />
                       ) : (
-                        <ToggleLeft className="h-4 w-4" />
+                        <ToggleLeft className="h-4 w-4" color='white' />
                       )}
                     </Button>
                   </div>
@@ -367,7 +368,7 @@ const AdminMenuPage = () => {
               <CardContent>
                 <div className="space-y-4">
                   {menu.description && (
-                    <p className="text-muted-foreground">{menu.description}</p>
+                    <p className="text-foreground">{menu.description}</p>
                   )}
 
                   {/* Aperçu des plats */}
@@ -391,7 +392,7 @@ const AdminMenuPage = () => {
                   )}
 
                   <div className="flex justify-between items-center pt-4 border-t">
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-foreground">
                       Total: {menu.plats?.reduce((sum, plat) => sum + plat.prix, 0) || 0} FCFA
                     </div>
                     
@@ -400,6 +401,7 @@ const AdminMenuPage = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => handleEdit(menu)}
+                        className="text-primary-foreground"
                       >
                         <Edit className="h-4 w-4 mr-2" />
                         Modifier
@@ -428,7 +430,7 @@ const AdminMenuPage = () => {
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold">{menus.length}</div>
-              <div className="text-sm text-muted-foreground">Total menus</div>
+              <div className="text-sm text-foreground">Total menus</div>
             </CardContent>
           </Card>
           
@@ -437,7 +439,7 @@ const AdminMenuPage = () => {
               <div className="text-2xl font-bold text-green-600">
                 {menus.filter(m => m.versionWeb).length}
               </div>
-              <div className="text-sm text-muted-foreground">Menus actifs</div>
+              <div className="text-sm text-foreground">Menus actifs</div>
             </CardContent>
           </Card>
           
@@ -446,7 +448,7 @@ const AdminMenuPage = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {menus.reduce((sum, menu) => sum + (menu.plats?.length || 0), 0)}
               </div>
-              <div className="text-sm text-muted-foreground">Total plats</div>
+              <div className="text-sm text-foreground">Total plats</div>
             </CardContent>
           </Card>
           
@@ -455,7 +457,7 @@ const AdminMenuPage = () => {
               <div className="text-2xl font-bold text-orange-600">
                 {Math.round(menus.reduce((sum, menu) => sum + (menu.plats?.reduce((s, p) => s + p.prix, 0) || 0), 0) / menus.length) || 0}
               </div>
-              <div className="text-sm text-muted-foreground">Prix moyen</div>
+              <div className="text-sm text-foreground">Prix moyen</div>
             </CardContent>
           </Card>
         </div>

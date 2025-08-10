@@ -143,12 +143,12 @@ const AdminUtilisateursPage = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Gestion des Utilisateurs</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold foodHive-text-gradient">Gestion des Utilisateurs</h1>
+          <p className="text-primary-foreground">
             {filteredUsers.length} utilisateur{filteredUsers.length > 1 ? 's' : ''} trouvé{filteredUsers.length > 1 ? 's' : ''}
           </p>
         </div>
-        <div className="flex space-x-2 mt-4 md:mt-0">
+        <div className="flex space-x-2 mt-4 md:mt-0 text-primary-foreground">
           <Button
               onClick={() => queryClient.invalidateQueries(['admin-users'])}
               variant="outline"
@@ -167,7 +167,7 @@ const AdminUtilisateursPage = () => {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-3 h-4 w-4" color='white' />
             <Input
               placeholder="Rechercher par nom, email ou téléphone..."
               value={searchTerm}
@@ -194,9 +194,9 @@ const AdminUtilisateursPage = () => {
       <div className="space-y-4">
         {filteredUsers.length === 0 ? (
           <div className="text-center py-12">
-            <Users className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+            <Users className="h-16 w-16 mx-auto text-foreground mb-4" />
             <h3 className="text-lg font-medium mb-2">Aucun utilisateur trouvé</h3>
-            <p className="text-muted-foreground">
+            <p className="text-foreground">
               Aucun utilisateur ne correspond à vos critères de recherche
             </p>
           </div>
@@ -214,17 +214,17 @@ const AdminUtilisateursPage = () => {
                     <div className="space-y-1">
                       <CardTitle className="text-lg">{user.nom}</CardTitle>
                       <CardDescription className="flex items-center space-x-4">
-                        <span className="flex items-center">
+                        <span className="flex items-center text-foreground">
                           <Mail className="h-4 w-4 mr-1" />
                           {user.email}
                         </span>
                         {user.telephone && (
-                          <span className="flex items-center">
+                          <span className="flex items-center text-foreground">
                             <Phone className="h-4 w-4 mr-1" />
                             {user.telephone}
                           </span>
                         )}
-                        <span className="flex items-center">
+                        <span className="flex items-center text-foreground">
                           <Calendar className="h-4 w-4 mr-1" />
                           {format(new Date(user.dateCreation), 'dd/MM/yyyy', { locale: fr })}
                         </span>
@@ -241,6 +241,7 @@ const AdminUtilisateursPage = () => {
                         <Button 
                           variant="outline" 
                           size="sm"
+                          className="flex items-center text-primary-foreground"
                           onClick={() => setSelectedUser(user)}
                         >
                           Détails
@@ -252,7 +253,7 @@ const AdminUtilisateursPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between items-center">
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-foreground">
                     {user.preferences?.historiqueCommandes?.length || 0} commande{(user.preferences?.historiqueCommandes?.length || 0) > 1 ? 's' : ''} • 
                     {user.preferences?.favoris?.length || 0} favori{(user.preferences?.favoris?.length || 0) > 1 ? 's' : ''}
                   </div>
@@ -360,21 +361,21 @@ const AdminUtilisateursPage = () => {
                       <div className="text-2xl font-bold text-orange-600">
                         {selectedUser.preferences?.historiqueCommandes?.length || 0}
                       </div>
-                      <div className="text-sm text-muted-foreground">Commandes</div>
+                      <div className="text-sm text-foreground">Commandes</div>
                     </div>
                     
                     <div className="text-center p-4 bg-muted rounded-lg">
                       <div className="text-2xl font-bold text-orange-600">
                         {selectedUser.preferences?.favoris?.length || 0}
                       </div>
-                      <div className="text-sm text-muted-foreground">Favoris</div>
+                      <div className="text-sm text-foreground">Favoris</div>
                     </div>
                     
                     <div className="text-center p-4 bg-muted rounded-lg">
                       <div className="text-2xl font-bold text-orange-600">
                         {selectedUser.preferences?.platsPreferences?.length || 0}
                       </div>
-                      <div className="text-sm text-muted-foreground">Préférences</div>
+                      <div className="text-sm text-foreground">Préférences</div>
                     </div>
                   </div>
                 </div>
@@ -402,7 +403,7 @@ const AdminUtilisateursPage = () => {
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold">{users.length}</div>
-              <div className="text-sm text-muted-foreground">Total utilisateurs</div>
+              <div className="text-sm text-foreground">Total utilisateurs</div>
             </CardContent>
           </Card>
           
@@ -411,7 +412,7 @@ const AdminUtilisateursPage = () => {
               <div className="text-2xl font-bold text-green-600">
                 {users.filter(u => u.role === 'client').length}
               </div>
-              <div className="text-sm text-muted-foreground">Clients</div>
+              <div className="text-sm text-foreground">Clients</div>
             </CardContent>
           </Card>
           
@@ -420,7 +421,7 @@ const AdminUtilisateursPage = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {users.filter(u => u.role === 'gestionnaire').length}
               </div>
-              <div className="text-sm text-muted-foreground">Gestionnaires</div>
+              <div className="text-sm text-foreground">Gestionnaires</div>
             </CardContent>
           </Card>
           
@@ -429,7 +430,7 @@ const AdminUtilisateursPage = () => {
               <div className="text-2xl font-bold text-red-600">
                 {users.filter(u => u.role === 'admin').length}
               </div>
-              <div className="text-sm text-muted-foreground">Admins</div>
+              <div className="text-sm text-foreground">Admins</div>
             </CardContent>
           </Card>
         </div>

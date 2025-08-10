@@ -99,7 +99,7 @@ const AdminLoginPage = () => {
           <Button
             variant="ghost"
             onClick={() => navigate('/')}
-            className="flex items-center text-muted-foreground hover:text-foreground"
+            className="flex items-center text-primary-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour à l'accueil
@@ -122,7 +122,7 @@ const AdminLoginPage = () => {
             <CardTitle className="text-2xl font-bold text-primary">
               Administration
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm text-foreground">
               Connectez-vous à l'interface d'administration FoodHive
             </CardDescription>
           </CardHeader>
