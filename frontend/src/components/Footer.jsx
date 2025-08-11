@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { Heart, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
               Découvrez nos saveurs authentiques dans une ambiance afro-contemporaine.
             </p>
             <p className="text-sm text-primary-foreground/60">
-              © 2024 FoodHive. Tous droits réservés.
+              © 2025 FoodHive. Tous droits réservés.
             </p>
           </div>
 
@@ -55,9 +55,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li>📍 Yaounde, Cameroun</li>
-              <li>📞 +237 XX XX XX XX</li>
-              <li>✉️ contact@foodhive.ci</li>
+              <li className='flex'> <MapPin className='h-6 w-6 mr-2' />  Yaounde, Cameroun</li>
+              <li>📞 +237 673 11 52 33</li>
+              <li>✉️ eranistechnology@gmail.com</li>
             </ul>
           </div>
         </div>
@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-primary-foreground/60 mb-4 md:mb-0">
-              Fait avec <Heart className="inline h-4 w-4 text-red-400" /> par l'équipe FoodHive
+              Fait avec <Heart className="inline h-4 w-4 text-red-400" /> par l'équipe Eranis
             </p>
             <div className="flex space-x-4 text-sm">
               {/* <a 

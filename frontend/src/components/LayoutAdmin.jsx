@@ -59,8 +59,8 @@ const LayoutAdmin = () => {
   const NavLink = ({ href, label, icon: Icon, mobile = false }) => {
     const isActive = location.pathname === href;
     const baseClasses = mobile
-      ? "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-      : "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary";
+      ? "flex items-center gap-3 rounded-lg px-3 py-2 text-foreground transition-all hover:text-primary"
+      : "flex items-center gap-3 rounded-lg px-3 py-2 text-foreground transition-all hover:text-primary";
     
     const activeClasses = isActive ? "bg-muted text-primary" : "";
 
@@ -87,8 +87,8 @@ const LayoutAdmin = () => {
               <span>FOODHIVE</span>
             </Link>
           </div>
-          <div className="flex-1">
-            <nav className="grid items-start px-2 text-sm text-primary-foreground font-medium lg:px-4">
+          <div className="flex-1 bg-secondary-foreground">
+            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               {adminNavItems.map((item) => (
                 <NavLink key={item.href} {...item} />
               ))}
@@ -130,7 +130,7 @@ const LayoutAdmin = () => {
           </Sheet>
 
           <div className="w-full flex-1">
-            <h1 className="text-lg font-semibold md:text-2xl">
+            <h1 className="text-lg text-primary-foreground font-semibold md:text-2xl">
               {user?.role === 'admin' ? 'Administration' : 'Restaurant'}
             </h1>
           </div>

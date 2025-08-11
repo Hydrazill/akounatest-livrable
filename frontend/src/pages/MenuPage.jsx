@@ -283,7 +283,7 @@ const MenuPage = () => {
                                                     </p>
 
                                                     {/* Allergènes */}
-                                                    {plat.allergenes && plat.allergenes.length > 0 && (
+                                                    {(plat.allergenes && plat.allergenes.length > 0) ? (
                                                         <div className="flex flex-wrap gap-1 mb-4">
                                                             {plat.allergenes.slice(0, 3).map((allergene) => (
                                                                 <Badge key={allergene} variant="outline" className="text-xs">
@@ -295,6 +295,12 @@ const MenuPage = () => {
                                                                     +{plat.allergenes.length - 3}
                                                                 </Badge>
                                                             )}
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex flex-wrap gap-1 mb-4">
+                                                            <Badge variant="outline" className="text-xs">
+                                                                Aucun
+                                                            </Badge>
                                                         </div>
                                                     )}
 

@@ -180,7 +180,7 @@ const AdminCommandesPage = () => {
           <h1 className="text-3xl font-bold foodHive-text-gradient">
             Gestion des Commandes
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-primary-foreground">
             Suivez et gérez toutes les commandes en temps réel
           </p>
         </div>
@@ -188,7 +188,7 @@ const AdminCommandesPage = () => {
         <Button
           onClick={() => queryClient.invalidateQueries(['admin-commandes'])}
           variant="outline"
-          className="mt-4 md:mt-0"
+          className="mt-4 md:mt-0 text-primary-foreground"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -210,7 +210,7 @@ const AdminCommandesPage = () => {
         className="flex flex-col md:flex-row gap-4"
       >
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-foreground h-4 w-4" />
           <Input
             placeholder="Rechercher par ID, table ou client..."
             value={searchTerm}
@@ -328,7 +328,7 @@ const AdminCommandesPage = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 text-primary-foreground">
                       {getStatusActions(commande)}
                       <Button variant="outline" size="sm">
                         <Eye className="h-3 w-3 mr-1" />
