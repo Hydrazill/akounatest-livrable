@@ -452,9 +452,9 @@ const AdminTablesPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center py-12"
         >
-          <MapPin className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Aucune table configurée</h3>
-          <p className="text-muted-foreground mb-6">
+          <MapPin className="h-16 w-16 text-primary-foreground mx-auto mb-4" />
+          <h3 className="text-lg text-primary-foreground font-semibold mb-2">Aucune table configurée</h3>
+          <p className="text-primary-foreground mb-6">
             Commencez par ajouter des tables à votre restaurant
           </p>
           <Button className="foodHive-button-primary">
