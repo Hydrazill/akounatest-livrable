@@ -9,7 +9,7 @@ import { Separator } from './ui/separator';
 import { ScrollArea } from './ui/scroll-area';
 
 import { panierService } from "../lib/api";
-import { usePanierStore, useUIStore, useAuthStore, useTableStore } from '@/lib/store';
+import { usePanierStore, useUIStore, useAuthStore, useTableStore, useCommandeStore } from '@/lib/store';
 import { formatPrice } from '@/lib/utils';
 
 const Cart = () => {
@@ -69,6 +69,7 @@ const Cart = () => {
             const response = await panierService.convertToOrder(clientId, {
                 tableId: table._id,
             });
+            useCommandeStore.getState().setCommande(response?.data?.commande);
             toast.success('Commande passer. Veillez patienter...');
             closeCart();
             clearPanier();

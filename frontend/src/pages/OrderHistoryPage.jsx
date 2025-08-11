@@ -202,13 +202,13 @@ const OrderHistoryPage = () => {
                       <Separator className="my-4" />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         {commande.dateConfirmation && (
-                          <div className="flex items-center text-muted-foreground">
+                          <div className="flex items-center text-foreground">
                             <Clock className="h-4 w-4 mr-2" />
                             Confirmée le {formatDateTime(commande.dateConfirmation)}
                           </div>
                         )}
                         {commande.dateLivraison && (
-                          <div className="flex items-center text-muted-foreground">
+                          <div className="flex items-center text-foreground">
                             <Clock className="h-4 w-4 mr-2" />
                             Servie le {formatDateTime(commande.dateLivraison)}
                           </div>

@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { authService, panierService } from '@/lib/api';
-import { useAuthStore } from '@/lib/store';
+import { useAuthStore, useCommandeStore } from '@/lib/store';
 import { validateEmail, validatePhone, validatePassword } from '@/lib/utils';
 
 const RegisterPage = () => {
@@ -107,6 +107,7 @@ const RegisterPage = () => {
           console.error('Erreur chargement panier:', err);
         }
 
+        useCommandeStore.getState().clearCommande();
         toast.success('Inscription réussie !');
         navigate('/', { replace: true });
       }

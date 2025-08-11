@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { authService, panierService } from '@/lib/api';
-import { useAuthStore, usePanierStore, useTableStore } from '@/lib/store';
+import { useAuthStore, usePanierStore, useTableStore, useCommandeStore } from '@/lib/store';
 import { validateEmail } from '@/lib/utils';
 
 const LoginPage = () => {
@@ -87,6 +87,7 @@ const LoginPage = () => {
           console.error('Erreur chargement panier:', err);
         }
 
+        useCommandeStore.getState().clearCommande();
         toast.success('Connexion réussie !');
         navigate('/', { replace: true });
       }

@@ -159,8 +159,6 @@ router.post('/:clientId/convert-to-order', [
     if (!panier) return res.status(404).json(createResponse(false, {}, 'Panier non trouvé'));
     if (panier.items.length === 0) return res.status(400).json(createResponse(false, {}, 'Panier vide'));
 
-    console.log("Panier:", panier);
-
     const commandeItems = panier.items.map(item => ({
       platId: item.platId._id,
       nom: item.platId.nom,

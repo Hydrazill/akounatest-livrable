@@ -120,7 +120,7 @@ export const usePanierStore = create(
       },
 
       clearPanier: () => {
-        set({ panier: [], itemCount: 0 });
+        set({ panier: {}, itemCount: 0 });
       },
     }),
     {
@@ -173,6 +173,31 @@ export const useFavorisStore = create(
     {
       name: 'foodHive_favoris',
       getStorage: () => localStorage,
+    }
+  )
+);
+
+// Store pour la gestion de la commande
+export const useCommandeStore = create(
+  persist(
+    (set) => ({
+      commande: {},
+
+      setPanier: (commande) => {
+        set({
+          commande: commande,
+        });
+      },
+
+      clearCommande: () => {
+        set({ panier: {} });
+      },
+    }),
+    {
+      name: 'commande-storage',
+      partialize: (state) => ({
+        commande: state.commande
+      }),
     }
   )
 );
