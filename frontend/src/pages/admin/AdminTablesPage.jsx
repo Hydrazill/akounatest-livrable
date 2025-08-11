@@ -409,7 +409,7 @@ const AdminTablesPage = () => {
             <DialogTitle>
               QR Code - Table {selectedTable?.numero}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-sm text-foreground">
               Ce QR code permet d'accéder au menu de la table {selectedTable?.numero}
             </DialogDescription>
           </DialogHeader>
@@ -427,10 +427,10 @@ const AdminTablesPage = () => {
 
               {/* Texte explicatif + code */}
               <div className="text-center space-y-2">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-primary-foreground">
                   Scannez ce code pour accéder au menu de la table <strong>{selectedTable?.numero}</strong>
                 </p>
-                <p className="text-xs font-mono text-muted-foreground bg-muted px-3 py-2 rounded-md break-all">
+                <p className="text-xs font-mono text-primary-foreground bg-muted px-3 py-2 rounded-md break-all">
                   {qrCodeData.qrCode}
                 </p>
               </div>
@@ -518,7 +518,7 @@ const AdminTablesPage = () => {
             </div>
 
             <div className="flex justify-end space-x-2">
-              <Button type="button" variant="outline" onClick={() => {
+              <Button type="button" variant="outline" className="text-primary-foreground" onClick={() => {
                   setIsDialogOpen(false);
                   setEditingTable(null);
                 }
