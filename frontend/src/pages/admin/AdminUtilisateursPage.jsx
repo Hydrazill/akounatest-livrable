@@ -254,7 +254,7 @@ const AdminUtilisateursPage = () => {
               <CardContent>
                 <div className="flex justify-between items-center">
                   <div className="text-sm text-foreground">
-                    {user.preferences?.historiqueCommandes?.length || 0} commande{(user.preferences?.historiqueCommandes?.length || 0) > 1 ? 's' : ''} • 
+                    {user?.historiqueCommandes?.length || 0} commande{(user?.historiqueCommandes?.length || 0) > 1 ? 's' : ''} • &nbsp;
                     {user.preferences?.favoris?.length || 0} favori{(user.preferences?.favoris?.length || 0) > 1 ? 's' : ''}
                   </div>
                   

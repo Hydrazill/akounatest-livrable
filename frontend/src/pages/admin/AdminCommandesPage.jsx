@@ -26,7 +26,7 @@ import { formatPrice, formatDateTime, getStatusColor, getStatusLabel } from '@/l
 const AdminCommandesPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null); // Pour le modal détails
   
   const queryClient = useQueryClient();
 
@@ -42,14 +42,80 @@ const AdminCommandesPage = () => {
 
   const commandes = commandesData?.data?.commandes || [];
 
+  const CommandeDetailsModal = ({ commande, onClose }) => {
+    if (!commande) return null;
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+        <div className="bg-card rounded-lg shadow-lg w-full max-w-lg mx-4 relative animate-fade-in">
+          <button
+            className="absolute top-2 right-2 p-2 text-xl text-foreground hover:text-primary transition-colors"
+            onClick={onClose}
+            aria-label="Fermer"
+          >
+            &times;
+          </button>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl">
+                Détails de la commande #{commande._id.slice(-6)}
+              </CardTitle>
+              <div className="flex items-center space-x-4 text-sm text-foreground mt-1">
+                <div className="flex items-center">
+                  <Calendar className="h-4 w-4 mr-1" />
+                  {formatDateTime(commande.dateCommande)}
+                </div>
+                <div>
+                  Table {commande.tableId?.numero || 'N/A'}
+                </div>
+                <div>
+                  {commande.clientId?.nom || 'Client anonyme'}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 mb-4">
+                <div className="font-semibold text-primary">Liste des plats :</div>
+                {commande?.items?.length > 0 ? (
+                  commande?.items?.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center border-b border-muted py-2">
+                      <div>
+                        <span className="font-bold">{item.quantite}x </span>
+                        <span>{item.platId?.nom || 'Plat supprimé'}</span>
+                        {item.commentaires && (
+                          <span className="ml-2 text-xs text-muted-foreground italic">({item.commentaires})</span>
+                        )}
+                      </div>
+                      <span className="font-medium">{formatPrice(item?.quantite * item?.prixUnitaire)}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-foreground italic">Aucun plat dans cette commande</div>
+                )}
+              </div>
+              <div className="mt-4 flex justify-between items-center">
+                <span className="text-sm text-foreground">
+                  {commande.items?.length || 0} plat(s)
+                </span>
+                <span className="text-lg font-bold text-primary">
+                  Total&nbsp;: {formatPrice(commande.total)}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  };
+
   // Mutation pour changer le statut d'une commande
   const updateStatusMutation = useMutation({
-    mutationFn: ({ id, status }) => commandeService.updateCommandeStatus(id, status),
+    mutationFn: ({ id, status }) => commandeService.updateStatus(id, { statut: status }),
     onSuccess: () => {
       queryClient.invalidateQueries(['admin-commandes']);
       toast.success('Statut mis à jour');
     },
     onError: (error) => {
+      console.error('Erreur lors de la mise à jour du statut :', error);
       toast.error(error.message || 'Erreur lors de la mise à jour');
     },
   });
@@ -215,7 +281,7 @@ const AdminCommandesPage = () => {
             placeholder="Rechercher par ID, table ou client..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pl-10 placeholder:text-primary-foreground"
           />
         </div>
         
@@ -275,10 +341,18 @@ const AdminCommandesPage = () => {
                 </Badge>
               )}
             </TabsTrigger>
+            <TabsTrigger value="annulee">
+              Annulées
+              {getCommandesByStatus('annulee').length > 0 && (
+                <Badge variant="secondary" className="ml-2 h-5 w-5 p-0 text-xs">
+                  {getCommandesByStatus('annulee').length}
+                </Badge>
+              )}
+            </TabsTrigger>
           </TabsList>
 
-          {['en_attente', 'confirmee', 'en_preparation', 'prete'].map((status) => (
-            <TabsContent key={status} value={status} className="space-y-4">
+          {['en_attente', 'confirmee', 'en_preparation', 'prete', 'annulee'].map((status) => (
+            <TabsContent key={status} value={status} className="space-y-4 mt-6">
               {getCommandesByStatus(status).map((commande) => (
                 <Card key={commande._id} className="foodHive-card">
                   <CardHeader>
@@ -330,7 +404,7 @@ const AdminCommandesPage = () => {
                     {/* Actions */}
                     <div className="flex flex-wrap gap-2 text-primary-foreground">
                       {getStatusActions(commande)}
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" onClick={() => setSelectedOrder(commande)}>
                         <Eye className="h-3 w-3 mr-1" />
                         Détails
                       </Button>
@@ -348,9 +422,14 @@ const AdminCommandesPage = () => {
           ))}
         </Tabs>
       </motion.div>
+      
+      {/* Modal détails commande */}
+      <CommandeDetailsModal 
+        commande={selectedOrder}
+        onClose={() => setSelectedOrder(null)}
+      />
     </div>
   );
 };
 
 export default AdminCommandesPage;
-
