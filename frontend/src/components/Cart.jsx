@@ -69,7 +69,7 @@ const Cart = () => {
             const response = await panierService.convertToOrder(clientId, {
                 tableId: table._id,
             });
-            useCommandeStore.getState().setCommande(response?.data?.commande);
+            useCommandeStore.getState().addCommande(response?.data?.commande);
             toast.success('Commande passer. Veillez patienter...');
             closeCart();
             clearPanier();

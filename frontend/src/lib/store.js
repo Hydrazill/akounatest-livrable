@@ -181,16 +181,19 @@ export const useFavorisStore = create(
 export const useCommandeStore = create(
   persist(
     (set) => ({
-      commande: {},
+      commande: [],
 
-      setPanier: (commande) => {
-        set({
-          commande: commande,
-        });
-      },
+      setFavoris: (newCommande) =>
+        set(() => ({ commande: [...newCommande] })),
+
+      addCommande: (newCommande) =>
+        set((state) => ({ commande: [...state.commande, newCommande] })),
+
+      removeCommande: (commandeToRemove) =>
+        set((state) => ({ commande: state.commande.filter((item) => item !== commandeToRemove) })),
 
       clearCommande: () => {
-        set({ panier: {} });
+        set({ commande: [] });
       },
     }),
     {

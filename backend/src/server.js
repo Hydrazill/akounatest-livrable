@@ -10,17 +10,22 @@ const database = require('./config/database.js');
 const PORT = config.port;
 
 // 📁 Chemins vers les certificats SSL (à adapter selon ton projet)
-const sslOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-};
+// const sslOptions = {
+//   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//   cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+// };
 
 const startServer = async () => {
   try {
     await database.connect();
     Logger.success('✅ Connexion à la base de données établie');
 
-    const server = https.createServer(sslOptions, app).listen(PORT, '0.0.0.0', () => {
+    // const server = https.createServer(sslOptions, app).listen(PORT, '0.0.0.0', () => {
+    //   Logger.success(`🚀 Serveur HTTPS démarré sur le port ${PORT}`);
+    //   Logger.info(`🌍 Environnement: ${config.nodeEnv}`);
+    //   Logger.info(`🔗 URL: https://localhost:${PORT}`);
+    // });
+    app.listen(PORT, '0.0.0.0', () => {
       Logger.success(`🚀 Serveur HTTPS démarré sur le port ${PORT}`);
       Logger.info(`🌍 Environnement: ${config.nodeEnv}`);
       Logger.info(`🔗 URL: https://localhost:${PORT}`);
@@ -37,10 +42,10 @@ const startServer = async () => {
         Logger.error('❌ Erreur lors de la fermeture de MongoDB:', err);
       }
 
-      server.close(() => {
-        Logger.info('🛑 Serveur HTTPS fermé.');
-        process.exit(0);
-      });
+      // server.close(() => {
+      //   Logger.info('🛑 Serveur HTTPS fermé.');
+      //   process.exit(0);
+      // });
 
       // Arrêt forcé au cas où
       setTimeout(() => {
