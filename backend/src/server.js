@@ -57,7 +57,7 @@ const startServer = async () => {
     process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
     process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
-    module.exports = server;
+    // module.exports = server;
 
   } catch (error) {
     Logger.error('❌ Échec du démarrage du serveur:', error);
